@@ -13,6 +13,17 @@ done
 
 endpath="$HOME/.tianchaijz-vim"
 vimdir="$HOME/.vim"
+bundles=bundles.vim
+pull_only=false
+
+for arg in "$@"; do
+    case $arg in
+        --pull)
+            pull_only=true
+            shift
+            ;;
+    esac
+done
 
 if [ ! -e $endpath/.git ]; then
     msg "Cloning tianchaijz/dot-vimrc"
@@ -20,12 +31,11 @@ if [ ! -e $endpath/.git ]; then
 else
     msg "Existing installation detected"
     msg "Updating from tianchaijz/dot-vimrc"
-    cd $endpath && git pull origin master
+    cd $endpath && git pull --rebase origin master
 fi
 
-if [ -e $vimdir/colors ]; then
-    msg "Preserving color scheme files"
-    cp -R $vimdir/colors $endpath/colors
+if $pull_only; then
+    exit 0
 fi
 
 today=`date +%Y%m%d_%H%M%S`
@@ -41,21 +51,23 @@ for i in $vimdir $HOME/.vimrc $HOME/.gvimrc; do
 done
 
 msg "Creating symlinks"
-detail "~/vimrc -> $HOME/.vimrc"
-detail "~/.vim   -> $HOME/.vim"
-detail "~/bundles.vim -> $vimdir/bundles.vim"
+detail "$endpath/vimrc -> $HOME/.vimrc"
+detail "$endpath/.vim   -> $HOME/.vim"
+detail "$endpath/$bundles -> $vimdir/$bundles"
 
-ln -sf $endpath/vimrc $HOME/.vimrc
 if [ ! -d $endpath/.vim/bundle ]; then
     mkdir -p $endpath/.vim/bundle
 fi
+
+ln -sf $endpath/vimrc $HOME/.vimrc
 ln -sf $endpath/.vim $vimdir
-ln -sf $endpath/bundles.vim $vimdir/bundles.vim
+ln -sf $endpath/$bundles $vimdir/$bundles
 
 if [ ! -e $vimdir/bundle/vundle ]; then
     msg "Installing Vundle"
     git clone http://github.com/gmarik/vundle.git $vimdir/bundle/vundle
 fi
 
-msg "Installing plugins using Vundle..."
+msg "Installing plugins using Vundle"
+msg "It may take a bit of time, please wait ..."
 vim -Es -u $endpath/vimrc +PluginInstall +qall

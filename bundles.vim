@@ -12,12 +12,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'ervandew/supertab'
 
 " => snippets
-Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-
-" => snipmate dependencies
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
 
 "-----------------
 " => neocomplcache
@@ -37,10 +33,12 @@ endif
 let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 
 "-----------------
-" => supertab
+" => ultisnips
 "-----------------
-let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
-let g:SuperTabRetainCompletionType=2
+let g:UltiSnipsExpandTrigger = "<Tab>"
+let g:UltiSnipsJumpForwardTrigger = "<C-b>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-z>"
+let g:UltiSnipsEditSplit = "vertical"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -85,6 +83,7 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'Yggdroot/indentLine'
+Plugin 'fholgado/minibufexpl.vim'
 
 " => Slime & Tmux
 Plugin 'jgdavey/tslime.vim'
@@ -128,7 +127,7 @@ let g:tagbar_type_lua = {
 \ }
 
 if executable('coffeetags')
-  let g:tagbar_type_coffee = {
+    let g:tagbar_type_coffee = {
         \ 'ctagsbin' : 'coffeetags',
         \ 'ctagsargs' : '',
         \ 'kinds' : [
@@ -139,16 +138,16 @@ if executable('coffeetags')
         \ 'kind2scope' : {
         \ 'f' : 'object',
         \ 'o' : 'object',
-      \ }
-  \ }
+        \ }
+    \ }
 endif
 
 let g:tagbar_type_markdown = {
-  \ 'ctagstype' : 'markdown',
-  \ 'sort' : 0,
-  \ 'kinds' : [
-      \ 'h:sections'
-  \ ]
+    \ 'ctagstype' : 'markdown',
+    \ 'sort' : 0,
+    \ 'kinds' : [
+        \ 'h:sections'
+    \ ]
 \ }
 
 "-----------------
@@ -224,6 +223,7 @@ Plugin 'pbrisbin/html-template-syntax'
 "-----------------
 " => Rainbow parentheses for Lisp and variants
 "-----------------
+let g:rbpt_max = 16
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -241,8 +241,8 @@ let g:rbpt_colorpairs = [
     \ ['darkcyan',    'SeaGreen3'],
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3'],
-    \ ]
-let g:rbpt_max = 16
+\ ]
+
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 
 
@@ -266,7 +266,6 @@ Plugin 'fisadev/fisa-vim-colorscheme'
 "-----------------
 " => Gundo, nerdtree, tagbar
 "-----------------
-
 " Show undo tree
 nmap <silent> <leader>u :GundoToggle<CR>
 
@@ -280,11 +279,6 @@ nmap <F6> :NERDTreeToggle<cr>
 nmap  <D-/> :
 nnoremap <leader>a :Ack
 nnoremap <leader>v V`]
-
-imap <C-k> <Plug>(neocomplcache_snippets_force_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_force_expand)
-imap <C-l> <Plug>(neocomplcache_snippets_force_jump)
-smap <C-l> <Plug>(neocomplcache_snippets_force_jump)
 
 "-----------------
 " => Align
@@ -321,11 +315,11 @@ let g:extradite_width = 60
 
 " Hide messy Ggrep output and copen automatically
 function! NonintrusiveGitGrep(term)
-  execute "copen"
-  " Map 't' to open selected item in new tab
-  execute "nnoremap <silent> <buffer> t <C-W><CR><C-W>T"
-  execute "silent! Ggrep " . a:term
-  execute "redraw!"
+    execute "copen"
+    " Map 't' to open selected item in new tab
+    execute "nnoremap <silent> <buffer> t <C-W><CR><C-W>T"
+    execute "silent! Ggrep " . a:term
+    execute "redraw!"
 endfunction
 
 command! -nargs=1 GGrep call NonintrusiveGitGrep(<q-args>)

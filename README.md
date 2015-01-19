@@ -105,7 +105,7 @@ Compile Vim with `--enable-pythoninterp` and `--enable-rubyinterp` to enable pow
 For `OS X`,
 
 ``` bash
-brew install macvim --override-system-vim  # OS X
+brew install macvim --override-system-vim
 brew install ack ctags
 ```
 

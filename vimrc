@@ -13,6 +13,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible
+
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
@@ -26,11 +28,6 @@ set ffs=unix,dos,mac
 
 " Enable syntax hightlight and completion
 syntax on
-
-" Highlight current line
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline cursorcolumn
-set cursorline cursorcolumn
 
 " Search
 set incsearch
@@ -71,7 +68,7 @@ set whichwrap+=<,>,h,l
 set list
 " But only interesting whitespace
 if &listchars ==# 'eol:$'
-  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+    set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
 
 " Turn backup off, since most stuff is in Git anyway...
@@ -91,7 +88,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundles
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible               " be IMproved
 filetype off                   " required!
 
 " Enable filetype plugins
@@ -102,7 +98,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 if filereadable(expand("~/.vim/bundles.vim"))
-  source ~/.vim/bundles.vim
+    source ~/.vim/bundles.vim
 endif
 
 
@@ -136,7 +132,7 @@ let g:solarized_termcolors=256
 let g:solarized_termtrans = 1
 set background=dark
 try
-  colorscheme solarized
+    colorscheme solarized
 catch
 endtry
 
@@ -155,16 +151,33 @@ func! SetColorColumn()
 endfunc
 
 func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
+endfunc
+
+" MyNext() and MyPrev(): Movement between tabs OR buffers
+func! MyNext()
+    if exists( '*tabpagenr' ) && tabpagenr('$') != 1
+        normal gt
+    else
+        exe ":bnext"
+    endif
+endfunc
+
+func! MyPrev()
+    if exists( '*tabpagenr' ) && tabpagenr('$') != '1'
+        normal gT
+    else
+        exe ":bprev"
+    endif
 endfunc
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-cmap w!! %!sudo tee >/dev/null %
+cmap w!! w !sudo tee >/dev/null %
 
 " Allow the normal use of "," by pressing it twice
 noremap ,, ,
@@ -177,15 +190,17 @@ cmap Q q
 cmap Qa qa
 cmap QA qa
 
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+if exists('$TMUX') == 0
+    map <C-h> <C-w>h
+    map <C-j> <C-w>j
+    map <C-k> <C-w>k
+    map <C-l> <C-w>l
+endif
 
 " Fix Escape uncomfortable
 inoremap <Esc> <Esc>l
-inoremap <c-f> <Esc>lli
-inoremap <c-b> <Esc>i
+inoremap <C-f> <Esc>lli
+inoremap <C-b> <Esc>i
 
 " Treat long lines as break lines (useful when moving around in them)
 nnoremap j gj
@@ -208,32 +223,23 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " But preserve cursor coloring
 map <silent> <leader><cr> :noh<cr>:hi Cursor ctermbg=red guibg=red<cr>
 
-" For macvim
-if has("gui_running")
-    set go=aAce    " remove toolbar
-    set transparency=30
-    set guifont=Monaco:h13
-    set showtabline=2
-    set columns=140
-    set lines=40
-    noremap <D-M-Left> :tabprevious<cr>
-    noremap <D-M-Right> :tabnext<cr>
-    map <D-1> 1gt
-    map <D-2> 2gt
-    map <D-3> 3gt
-    map <D-4> 4gt
-    map <D-5> 5gt
-    map <D-6> 6gt
-    map <D-7> 7gt
-    map <D-8> 8gt
-    map <D-9> 9gt
-    map <D-0> :tablast<CR>
-endif
+" Mappings for translation of snippets between multi Vim
+vnoremap <leader>tee :!tee /tmp/t<CR>
+vnoremap <leader>cat :!cat /tmp/t<CR>
+
+" Movement between tabs OR buffers
+nnoremap Q :call MyPrev()<CR>
+nnoremap W :call MyNext()<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Highlight current line
+au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline cursorcolumn
+set cursorline cursorcolumn
+
 " Enable omni completion
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -243,26 +249,26 @@ autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
 " Delete trailing whitespace
 augroup whitespace
-  autocmd!
-  autocmd BufWrite *.lua :call DeleteTrailingWS()
-  autocmd BufWrite *.pl :call DeleteTrailingWS()
-  autocmd BufWrite *.py :call DeleteTrailingWS()
-  autocmd BufWrite *.rb :call DeleteTrailingWS()
+    autocmd!
+    autocmd BufWrite *.lua :call DeleteTrailingWS()
+    autocmd BufWrite *.pl :call DeleteTrailingWS()
+    autocmd BufWrite *.py :call DeleteTrailingWS()
+    autocmd BufWrite *.rb :call DeleteTrailingWS()
 augroup END
 
 " Source the vimrc file after saving it
 augroup sourcing
-  autocmd!
-  autocmd bufwritepost .vimrc source $MYVIMRC
+    autocmd!
+    autocmd bufwritepost .vimrc source $MYVIMRC
 augroup END
 
 " Return to last edit position when opening files (You want this!)
 augroup last_edit
-  autocmd!
-  autocmd BufReadPost *
-       \ if line("'\"") > 0 && line("'\"") <= line("$") |
-       \   exe "normal! g`\"" |
-       \ endif
+    autocmd!
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \   exe "normal! g`\"" |
+                \ endif
 augroup END
 
 " Limit git commit message length
