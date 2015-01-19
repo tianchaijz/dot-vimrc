@@ -1,0 +1,9 @@
+.DS_Store
+.Trashes
+.vim
+.netrwhist
+
+*.orig
+.*.sw[a-z]
+*#
+._*
