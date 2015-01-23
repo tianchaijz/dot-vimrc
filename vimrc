@@ -88,18 +88,18 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundles
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off                   " required!
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 if filereadable(expand("~/.vim/bundles.vim"))
     source ~/.vim/bundles.vim
 endif
+
+filetype off                   " required!
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

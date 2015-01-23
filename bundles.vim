@@ -18,6 +18,7 @@ Plugin 'honza/vim-snippets'
 "-----------------
 " => neocomplcache
 "-----------------
+set completeopt-=preview
 let g:neocomplcache_enable_at_startup=1
 let g:neoComplcache_disableautocomplete=1
 let g:neocomplcache_enable_smart_case=1
@@ -25,7 +26,6 @@ let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_enable_camel_case_completion = 1
-set completeopt-=preview
 
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
@@ -36,8 +36,8 @@ let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 " => ultisnips
 "-----------------
 let g:UltiSnipsExpandTrigger = "<Tab>"
-let g:UltiSnipsJumpForwardTrigger = "<C-b>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-z>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsEditSplit = "vertical"
 
 
