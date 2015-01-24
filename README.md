@@ -12,7 +12,7 @@ Don't worry, it will back up your existing vim configuration.
 
 ## Keybindings
 
-These dotfiles organize commands into logical groups to help you
+These keybindings organized into logical groups to help you
 remember them.
 
 ### Running Things
@@ -64,7 +64,7 @@ Key           | Action
 :------------ | :-------
 ,2s           | Convert symbol under cursor from symbol to string
 ,2y           | Convert string under cursor from string to symbol
-,2_           | Convert string under cursor to snake_case
+,2\_          | Convert string under cursor to snake_case
 ,2c           | Convert string under cursor to camelCase
 ,2m           | Convert string under cursor to MixedCase
 ,2u           | Convert string under cursor to SNAKE_UPPERCASE
@@ -84,7 +84,7 @@ Key           | Action
 :------------ | :-------
 ,u            | Interactive undo tree
 ,ss           | Enable spell checking
-,hc           | Highlight current line
+,hc           | Toggle highlighting of current column
 ,e            | Open file prompt with current path
 ,\<cr\>       | Clear search highlights
 ,r            | Redraw screen
@@ -93,23 +93,23 @@ C-p           | Toggle ctrlp
 Alt-1~9       | Switch between multiple buffers
 :Ack or ,a    | Toggle Ack searching
 ,c\<space\>   | Toggle comment
-F3            | Toggle Gundo viewer
-F4            | Toggle Indent Guides
+F2            | Toggle paste
+F3            | Toggle Indent Guides
+F4            | Toggle tagbar
 F5            | Toggle Nerd-Tree file viewer
-F6            | Toggle tagbar
 
 
 ## Dependencies
 Compile Vim with `--enable-pythoninterp` and `--enable-rubyinterp` to enable powerful syntax completion supplied by neocomplcache.
 
-For `OS X`,
+For `Mac OS X`,
 
 ``` bash
 brew install macvim --override-system-vim
 brew install ack ctags
 ```
 
-For `ArchLinux`,
+For `Arch Linux`,
 
 ``` bash
 yaourt -S gvim

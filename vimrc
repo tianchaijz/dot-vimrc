@@ -206,22 +206,25 @@ inoremap <C-b> <Esc>i
 nnoremap j gj
 nnoremap k gk
 
-nnoremap <leader>hc :call SetColorColumn()<cr>
-nnoremap <leader>dt :call DeleteTrailingWS()<cr>
+nnoremap <leader>hc :call SetColorColumn()<CR>
+nnoremap <leader>dt :call DeleteTrailingWS()<CR>
 
 " Force redraw
 map <silent> <leader>r :redraw!<CR>
 
 " Toggle spell checking
-map <leader>ss :setlocal spell!<cr>
+map <leader>ss :setlocal spell!<CR>
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" Disable highlight when <leader><cr> is pressed
+" Open file prompt with current path
+nmap <leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
+
+" Disable highlight when <leader><CR> is pressed
 " But preserve cursor coloring
-map <silent> <leader><cr> :noh<cr>:hi Cursor ctermbg=red guibg=red<cr>
+map <silent> <leader><CR> :noh<CR>:hi Cursor ctermbg=red guibg=red<CR>
 
 " Mappings for translation of snippets between multi Vim
 vnoremap <leader>tee :!tee /tmp/t<CR>

@@ -171,6 +171,7 @@ let g:easytags_resolve_links = 1
 "-----------------
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_max_files=0
 
 "-----------------
 " => indentLine
@@ -264,19 +265,24 @@ Plugin 'fisadev/fisa-vim-colorscheme'
 " Plugin keybindings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-----------------
-" => Gundo, nerdtree, tagbar
+" => Gundo
 "-----------------
+let g:gundo_width = 50
+let g:gundo_preview_height = 20
+let g:gundo_right = 0
+
 " Show undo tree
 nmap <silent> <leader>u :GundoToggle<CR>
 
-nnoremap <F2> :set invpaste paste?<CR>
+"-----------------
+" => paste, nerdtree, tagbar
+"-----------------
 set pastetoggle=<F2>
 
 nmap <leader>tt :TagbarToggle<CR>
-nmap <F4> :IndentGuidesToggle<cr>
-nmap <F5> :TagbarToggle<cr>
-nmap <F6> :NERDTreeToggle<cr>
-nmap  <D-/> :
+nmap <F3> :IndentGuidesToggle<CR>
+nmap <F4> :TagbarToggle<CR>
+nmap <F5> :NERDTreeToggle<CR>
 nnoremap <leader>a :Ack
 nnoremap <leader>v V`]
 
@@ -328,5 +334,8 @@ nmap <leader>gg :copen<CR>:GGrep
 nmap <leader>gl :Extradite!<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <leader>gb :Gblame<CR>
-nnoremap <silent> <C-\> :call NonintrusiveGitGrep(expand("<cword>"))<CR>
-vnoremap <silent> <C-\> "*y:call NonintrusiveGitGrep(@*)<CR>
+
+"-----------------
+" => ctrlp
+"-----------------
+nnoremap <silent> <leader><Space> :CtrlP<CR>
