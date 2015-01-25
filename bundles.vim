@@ -28,7 +28,7 @@ let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 
 if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
+    let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 
@@ -95,7 +95,6 @@ Plugin 'fholgado/minibufexpl.vim'
 Plugin 'jgdavey/tslime.vim'
 Plugin 'jgdavey/vim-turbux'
 Plugin 'christoomey/vim-tmux-navigator'
-
 
 "-----------------
 " => nerdtree
@@ -205,8 +204,12 @@ Plugin 'tpope/vim-haml'
 " Plugin 'wavded/vim-stylus'
 " Plugin 'nono/vim-handlebars'
 
+" => Python
+Plugin 'vim-scripts/Pydiction'
+Plugin 'nvie/vim-flake8'
+
 " => Markup Language
-Plugin 'tpope/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
 
 " => LaTeX
 Plugin 'jcf/vim-latex'
@@ -226,6 +229,11 @@ Plugin 'rosstimson/scala-vim-support'
 " => Haskell stuff
 Plugin 'vim-scripts/haskell.vim'
 Plugin 'pbrisbin/html-template-syntax'
+
+"-----------------
+" => Pydiction
+"-----------------
+au BufRead,BufNewFile *.py let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
 
 "-----------------
 " => Rainbow parentheses for Lisp and variants
