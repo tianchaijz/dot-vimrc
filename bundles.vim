@@ -1,5 +1,5 @@
-" let Vundle manage Vundle
-" required!
+" Let Vundle manage Vundle
+" Required!
 Plugin 'gmarik/vundle'
 
 
@@ -33,6 +33,12 @@ endif
 let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 
 "-----------------
+" => supertab
+"-----------------
+let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
+let g:SuperTabRetainCompletionType=2
+
+"-----------------
 " => ultisnips
 "-----------------
 let g:UltiSnipsExpandTrigger = "<Tab>"
@@ -50,7 +56,7 @@ Plugin 'Lokaltog/vim-easymotion'
 "-----------------
 " => easymotion
 "-----------------
-let g:EasyMotion_leader_key = '<Leader>'
+let g:EasyMotion_leader_key = '<leader>'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -292,20 +298,20 @@ nnoremap <leader>v V`]
 " Stop Align plugin from forcing its mappings on us
 let g:loaded_AlignMapsPlugin=1
 " Align on equal signs
-map <Leader>a= :Align =<CR>
+map <leader>a= :Align =<CR>
 " Align on commas
-map <Leader>a, :Align ,<CR>
+map <leader>a, :Align ,<CR>
 " Align on pipes
-map <Leader>a<bar> :Align <bar><CR>
+map <leader>a<bar> :Align <bar><CR>
 " Prompt for align character
 map <leader>ap :Align
 
 "-----------------
 " => tslime
 "-----------------
-vmap <silent> <Leader>rs <Plug>SendSelectionToTmux
-nmap <silent> <Leader>rs <Plug>NormalModeSendToTmux
-nmap <silent> <Leader>rv <Plug>SetTmuxVars
+vmap <silent> <leader>rs <Plug>SendSelectionToTmux
+nmap <silent> <leader>rs <Plug>NormalModeSendToTmux
+nmap <silent> <leader>rv <Plug>SetTmuxVars
 
 "-----------------
 " => turbux

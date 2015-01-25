@@ -1,6 +1,6 @@
 " Sections:
-"    => General
 "    => Bundles
+"    => General
 "    => Text, tab and indent related
 "    => Colors and Fonts
 "    => Helper functions
@@ -11,7 +11,7 @@
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
+" => Bundles
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
 
@@ -20,6 +20,24 @@ set nocompatible
 let mapleader = ","
 let g:mapleader = ","
 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+if filereadable(expand("~/.vim/bundles.vim"))
+    source ~/.vim/bundles.vim
+endif
+
+" Required!
+filetype off
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Encoding dectection
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 
@@ -62,6 +80,7 @@ set viminfo^=%                     " remember info about open buffers on close
 set wildmenu                       " wildmenu
 set wildmode=longest,list,full     " tab complete files up to longest unambiguous prefix
 set so=7                           " set 7 lines to the cursor - when moving vertically using j/k
+set cc=80                          " color the 80th column
 set whichwrap+=<,>,h,l
 
 " Show trailing whitespace
@@ -83,23 +102,6 @@ if has("win16") || has("win32")
 else
     set wildignore+=.git\*,.hg\*,.svn\*
 endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundles
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-if filereadable(expand("~/.vim/bundles.vim"))
-    source ~/.vim/bundles.vim
-endif
-
-filetype off                   " required!
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

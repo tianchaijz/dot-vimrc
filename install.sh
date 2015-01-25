@@ -14,6 +14,7 @@ done
 endpath="$HOME/.tianchaijz-vim"
 vimdir="$HOME/.vim"
 bundles=bundles.vim
+pull_enable=true
 pull_only=false
 
 for arg in "$@"; do
@@ -22,20 +23,26 @@ for arg in "$@"; do
             pull_only=true
             shift
             ;;
+        --nopull)
+            pull_enable=false
+            shift
+            ;;
     esac
 done
 
-if [ ! -e $endpath/.git ]; then
-    msg "Cloning tianchaijz/dot-vimrc"
-    git clone https://github.com/tianchaijz/dot-vimrc.git $endpath
-else
-    msg "Existing installation detected"
-    msg "Updating from tianchaijz/dot-vimrc"
-    cd $endpath && git pull --rebase origin master
-fi
+if $pull_enable; then
+    if [ ! -e $endpath/.git ]; then
+        msg "Cloning tianchaijz/dot-vimrc"
+        git clone https://github.com/tianchaijz/dot-vimrc.git $endpath
+    else
+        msg "Existing installation detected"
+        msg "Updating from tianchaijz/dot-vimrc"
+        cd $endpath && git pull --rebase origin master
+    fi
 
-if $pull_only; then
-    exit 0
+    if $pull_only; then
+        exit 0
+    fi
 fi
 
 today=`date +%Y%m%d_%H%M%S`
