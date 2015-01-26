@@ -85,6 +85,7 @@ Plugin 'kien/ctrlp.vim'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-easytags'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
 Plugin 'bronson/vim-trailing-whitespace'
@@ -332,6 +333,11 @@ nmap <leader>rt <Plug>SendFocusedTestToTmux
 " => fugitive
 "-----------------
 let g:extradite_width = 60
+
+"-----------------
+" => vim-gitgutter
+"-----------------
+let g:gitgutter_highlight_lines = 0
 
 " Hide messy Ggrep output and copen automatically
 function! NonintrusiveGitGrep(term)

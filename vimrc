@@ -44,7 +44,7 @@ set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-" Enable syntax hightlight and completion
+" Enable syntax highlight and completion
 syntax on
 
 " Search
@@ -241,9 +241,11 @@ nnoremap W :call MyNext()<CR>
 " => Buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Highlight current line
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline cursorcolumn
-set cursorline cursorcolumn
+" au WinLeave * set nocursorline nocursorcolumn
+" au WinEnter * set cursorline cursorcolumn
+" set cursorline cursorcolumn
+
+highlight clear SignColumn
 
 " Enable omni completion
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
