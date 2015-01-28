@@ -15,6 +15,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
 
+let $VIMHOME = $HOME . "/.vim"
+let $BUNDLES = $VIMHOME . "/bundles.vim"
+
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
@@ -23,8 +26,8 @@ let g:mapleader = ","
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-if filereadable(expand("~/.vim/bundles.vim"))
-    source ~/.vim/bundles.vim
+if filereadable($BUNDLES)
+    source $BUNDLES
 endif
 
 " Required!
@@ -131,7 +134,7 @@ autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 tex
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:solarized_termcolors=256
+let g:solarized_termcolors = 256
 let g:solarized_termtrans = 1
 set background=dark
 try
@@ -147,9 +150,9 @@ func! SetColorColumn()
     let col_num = virtcol(".")
     let cc_list = split(&cc, ',')
     if count(cc_list, string(col_num)) <= 0
-        exe "set cc+=".col_num
+        exe "set cc+=" . col_num
     else
-        exe "set cc-=".col_num
+        exe "set cc-=" . col_num
     endif
 endfunc
 
@@ -246,14 +249,8 @@ nnoremap W :call MyNext()<CR>
 " autocmd WinEnter * set cursorline cursorcolumn
 " set cursorline cursorcolumn
 
+" Clear column highlight theme
 highlight clear SignColumn
-
-" Enable omni completion
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
 " Delete trailing whitespace
 augroup whitespace

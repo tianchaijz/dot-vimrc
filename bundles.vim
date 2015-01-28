@@ -19,13 +19,26 @@ Plugin 'honza/vim-snippets'
 " => neocomplcache
 "-----------------
 set completeopt-=preview
-let g:neocomplcache_enable_at_startup=1
-let g:neoComplcache_disableautocomplete=1
-let g:neocomplcache_enable_smart_case=1
+let g:neocomplcache_enable_at_startup = 1
+let g:neoComplcache_disableautocomplete = 1
+let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_enable_camel_case_completion = 1
+
+" Enable omni completion
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType c setlocal omnifunc=ccomplete#Complete
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ 'py' : $VIMHOME . '/bundle/Pydiction/complete-dict',
+\ }
 
 if !exists('g:neocomplcache_omni_patterns')
     let g:neocomplcache_omni_patterns = {}
@@ -36,15 +49,15 @@ let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 " => supertab
 "-----------------
 let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
-let g:SuperTabRetainCompletionType=2
+let g:SuperTabRetainCompletionType = 2
 
 "-----------------
 " => ultisnips
 "-----------------
-let g:UltiSnipsExpandTrigger = "<Tab>"
-let g:UltiSnipsJumpForwardTrigger = "<C-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
-let g:UltiSnipsEditSplit = "vertical"
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+let g:UltiSnipsEditSplit = 'vertical'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -100,25 +113,25 @@ Plugin 'christoomey/vim-tmux-navigator'
 "-----------------
 " => nerdtree
 "-----------------
-let NERDChristmasTree=0
-let NERDTreeWinSize=30
-let NERDTreeChDirMode=2
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
-let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
-let NERDTreeShowBookmarks=1
-let NERDTreeWinPos = "right"
+let NERDChristmasTree = 0
+let NERDTreeWinSize = 30
+let NERDTreeChDirMode = 2
+let NERDTreeIgnore = ['\~$', '\.pyc$', '\.swp$']
+let NERDTreeSortOrder = ['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
+let NERDTreeShowBookmarks = 1
+let NERDTreeWinPos = 'right'
 
 "-----------------
 " => nerdcommenter
 "-----------------
-let NERDSpaceDelims=1
-let NERDCompactSexyComs=1
+let NERDSpaceDelims = 1
+let NERDCompactSexyComs = 1
 
 "-----------------
 " => tagbar
 "-----------------
-let g:tagbar_left=1
-let g:tagbar_width=30
+let g:tagbar_left = 1
+let g:tagbar_width = 30
 let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
 let g:tagbar_compact = 1
@@ -177,7 +190,7 @@ let g:easytags_resolve_links = 1
 "-----------------
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-let g:ctrlp_max_files=0
+let g:ctrlp_max_files = 0
 
 "-----------------
 " => indentLine
@@ -234,7 +247,7 @@ Plugin 'pbrisbin/html-template-syntax'
 "-----------------
 " => Pydiction
 "-----------------
-autocmd BufRead,BufNewFile *.py let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
+au BufRead,BufNewFile *.py let g:pydiction_location = $VIMHOME . '/bundle/Pydiction/complete-dict'
 
 "-----------------
 " => Rainbow parentheses for Lisp and variants
@@ -306,7 +319,7 @@ nnoremap <leader>v V`]
 " => Align
 "-----------------
 " Stop Align plugin from forcing its mappings on us
-let g:loaded_AlignMapsPlugin=1
+let g:loaded_AlignMapsPlugin = 1
 " Align on equal signs
 map <leader>a= :Align =<CR>
 " Align on commas
@@ -341,13 +354,13 @@ let g:extradite_width = 60
 let g:gitgutter_highlight_lines = 0
 
 " Hide messy Ggrep output and copen automatically
-function! NonintrusiveGitGrep(term)
-    execute "copen"
+func! NonintrusiveGitGrep(term)
+    exe "copen"
     " Map 't' to open selected item in new tab
-    execute "nnoremap <silent> <buffer> t <C-W><CR><C-W>T"
-    execute "silent! Ggrep " . a:term
-    execute "redraw!"
-endfunction
+    exe "nnoremap <silent> <buffer> t <C-W><CR><C-W>T"
+    exe "silent! Ggrep " . a:term
+    exe "redraw!"
+endfunc
 
 command! -nargs=1 GGrep call NonintrusiveGitGrep(<q-args>)
 nmap <leader>gs :Gstatus<CR>
