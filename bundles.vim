@@ -234,7 +234,7 @@ Plugin 'pbrisbin/html-template-syntax'
 "-----------------
 " => Pydiction
 "-----------------
-au BufRead,BufNewFile *.py let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
+autocmd BufRead,BufNewFile *.py let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
 
 "-----------------
 " => Rainbow parentheses for Lisp and variants
@@ -298,6 +298,7 @@ nmap <leader>tt :TagbarToggle<CR>
 nmap <F3> :IndentGuidesToggle<CR>
 nmap <F4> :TagbarToggle<CR>
 nmap <F5> :NERDTreeToggle<CR>
+nnoremap <F10> :set number! number?<CR>
 nnoremap <leader>a :Ack
 nnoremap <leader>v V`]
 

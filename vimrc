@@ -114,6 +114,7 @@ set softtabstop=4 " backspace
 set shiftwidth=4  " indent width
 set expandtab     " expand tab to space
 set smarttab
+set formatoptions+=mM
 
 " Linebreak on 500 characters
 set lbr
@@ -241,8 +242,8 @@ nnoremap W :call MyNext()<CR>
 " => Buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Highlight current line
-" au WinLeave * set nocursorline nocursorcolumn
-" au WinEnter * set cursorline cursorcolumn
+" autocmd WinLeave * set nocursorline nocursorcolumn
+" autocmd WinEnter * set cursorline cursorcolumn
 " set cursorline cursorcolumn
 
 highlight clear SignColumn
@@ -279,10 +280,10 @@ augroup last_edit
 augroup END
 
 " Limit git commit message length
-au FileType gitcommit set tw=72
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Add underline when length exceed 81
-au BufRead,BufNewFile *.lua,*.c,*.py,*.sh,*.pl,*.rb,*.erb 2match Underlined /.\%81v/
+autocmd BufRead,BufNewFile *.lua,*.c,*.py,*.sh,*.pl,*.rb,*.erb 2match Underlined /.\%81v/
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

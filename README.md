@@ -97,6 +97,7 @@ F2            | Toggle paste
 F3            | Toggle Indent Guides
 F4            | Toggle tagbar
 F5            | Toggle Nerd-Tree file viewer
+F10           | Toggle paste mode
 
 
 ## Dependencies
