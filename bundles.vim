@@ -103,6 +103,7 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'Yggdroot/indentLine'
+Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'fholgado/minibufexpl.vim'
 
 " => Slime & Tmux

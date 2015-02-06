@@ -164,7 +164,7 @@ endfunc
 
 " MyNext() and MyPrev(): Movement between tabs OR buffers
 func! MyNext()
-    if exists( '*tabpagenr' ) && tabpagenr('$') != 1
+    if exists('*tabpagenr') && tabpagenr('$') != 1
         normal gt
     else
         exe ":bnext"
@@ -172,7 +172,7 @@ func! MyNext()
 endfunc
 
 func! MyPrev()
-    if exists( '*tabpagenr' ) && tabpagenr('$') != '1'
+    if exists('*tabpagenr') && tabpagenr('$') != '1'
         normal gT
     else
         exe ":bprev"
