@@ -88,6 +88,8 @@ Key           | Action
 ,e            | Open file prompt with current path
 ,\<cr\>       | Clear search highlights
 ,r            | Redraw screen
+Q             | Move previous tab or buffer
+W             | Move next tab or buffer
 C-h/j/k/l     | Moving between spilt windows
 C-p           | Toggle ctrlp
 Alt-1~9       | Switch between multiple buffers

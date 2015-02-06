@@ -77,4 +77,4 @@ fi
 
 msg "Installing plugins using Vundle"
 msg "It may take a bit of time, please wait ..."
-vim -Es -u $endpath/vimrc +PluginInstall +qall
+vim -u $endpath/vimrc +PluginInstall +qall
