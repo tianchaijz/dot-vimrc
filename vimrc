@@ -79,7 +79,6 @@ set lazyredraw                     " don't redraw while executing macros (good p
 set magic                          " for regular expressions turn magic on
 set foldcolumn=1                   " add a bit extra margin to the left
 set backspace=eol,start,indent     " it acts as it should act
-set viminfo^=%                     " remember info about open buffers on close
 set wildmenu                       " wildmenu
 set wildmode=longest,list,full     " tab complete files up to longest unambiguous prefix
 set so=7                           " set 7 lines to the cursor - when moving vertically using j/k
@@ -196,17 +195,21 @@ cmap Q q
 cmap Qa qa
 cmap QA qa
 
-if exists('$TMUX') == 0
-    map <C-h> <C-w>h
-    map <C-j> <C-w>j
-    map <C-k> <C-w>k
-    map <C-l> <C-w>l
+if exists("$TMUX") == 0
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
 endif
 
 " Fix Escape uncomfortable
 inoremap <Esc> <Esc>l
-inoremap <C-f> <Esc>lli
-inoremap <C-b> <Esc>i
+
+" Fix <Up> and <Down> keys inserting A B character
+inoremap <Esc>OA <Esc>ki
+inoremap <Esc>OB <Esc>ji
+inoremap <Esc>OC <Right>
+inoremap <Esc>OD <Left>
 
 " Treat long lines as break lines (useful when moving around in them)
 nnoremap j gj
@@ -287,7 +290,7 @@ autocmd BufRead,BufNewFile *.lua,*.c,*.py,*.sh,*.pl,*.rb,*.erb 2match Underlined
 " => Conversion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Convert symbol to string
-nnoremap <silent> <leader>2s F:r"Ea"<ESC>
+nnoremap <silent> <leader>2s F:r"Ea"<Esc>
 " Convert string to symbol
 nnoremap <silent> <leader>2y F"r:,x
 

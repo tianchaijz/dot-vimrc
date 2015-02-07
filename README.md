@@ -90,6 +90,8 @@ Key           | Action
 ,r            | Redraw screen
 Q             | Move previous tab or buffer
 W             | Move next tab or buffer
+gS            | Split a one-liner into multiple lines
+gJ            | Join a block into a single-line statement
 C-h/j/k/l     | Moving between spilt windows
 C-p           | Toggle ctrlp
 Alt-1~9       | Switch between multiple buffers
