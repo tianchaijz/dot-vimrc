@@ -82,6 +82,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tpope/vim-repeat'
 Plugin 'vim-scripts/Align'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'michaeljsmith/vim-indent-object'
 
 " => Detect file encoding
 Plugin 'vim-scripts/AutoFenc.vim'
