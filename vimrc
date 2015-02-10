@@ -23,7 +23,7 @@ let $BUNDLES = $VIMHOME . "/bundles.vim"
 let mapleader = ","
 let g:mapleader = ","
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle/
 call vundle#rc()
 
 if filereadable($BUNDLES)

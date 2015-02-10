@@ -70,11 +70,12 @@ ln -sf $endpath/vimrc $HOME/.vimrc
 ln -sf $endpath/.vim $vimdir
 ln -sf $endpath/$bundles $vimdir/$bundles
 
-if [ ! -e $vimdir/bundle/vundle ]; then
+if [ ! -e $vimdir/bundle/Vundle ]; then
     msg "Installing Vundle"
-    git clone http://github.com/gmarik/vundle.git $vimdir/bundle/vundle
+    git clone http://github.com/gmarik/Vundle.git $vimdir/bundle/Vundle
 fi
 
 msg "Installing plugins using Vundle"
 msg "It may take a bit of time, please wait ..."
 vim -u $endpath/vimrc +PluginInstall +qall
+msg "Install successful!"
