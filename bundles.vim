@@ -108,6 +108,7 @@ Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'fholgado/minibufexpl.vim'
 
 " => Slime & Tmux
+Plugin 'jpalardy/vim-slime'
 Plugin 'jgdavey/tslime.vim'
 Plugin 'jgdavey/vim-turbux'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -332,10 +333,18 @@ map <leader>a<bar> :Align <bar><CR>
 map <leader>ap :Align
 
 "-----------------
+" => vim-slime
+"-----------------
+let g:slime_target = "tmux"
+let g:slime_paste_file = tempname()
+let g:slime_python_ipython = 1
+
+"-----------------
 " => tslime
 "-----------------
 vmap <silent> <leader>rs <Plug>SendSelectionToTmux
 nmap <silent> <leader>rs <Plug>NormalModeSendToTmux
+nmap <silent> <leader>re :Tmux<CR>
 nmap <silent> <leader>rv <Plug>SetTmuxVars
 
 "-----------------
@@ -350,11 +359,6 @@ nmap <leader>rt <Plug>SendFocusedTestToTmux
 "-----------------
 let g:extradite_width = 60
 
-"-----------------
-" => vim-gitgutter
-"-----------------
-let g:gitgutter_highlight_lines = 0
-
 " Hide messy Ggrep output and copen automatically
 func! NonintrusiveGitGrep(term)
     exe "copen"
@@ -364,12 +368,33 @@ func! NonintrusiveGitGrep(term)
     exe "redraw!"
 endfunc
 
+func! CommittedFiles()
+    " Clear quickfix list
+    let qf_list = []
+    " Find files committed in HEAD
+    let git_output = system("git diff-tree --no-commit-id --name-only -r HEAD\n")
+    for committed_file in split(git_output, "\n")
+        let qf_item = {'filename': committed_file}
+        call add(qf_list, qf_item)
+    endfor
+    " Fill quickfix list with them
+    call setqflist(qf_list, '')
+endfunc
+
 command! -nargs=1 GGrep call NonintrusiveGitGrep(<q-args>)
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gg :copen<CR>:GGrep
 nmap <leader>gl :Extradite!<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <leader>gb :Gblame<CR>
+
+" Show list of last-committed files
+nnoremap <silent> <leader>g? :call CommittedFiles()<CR>:copen<CR>
+
+"-----------------
+" => vim-gitgutter
+"-----------------
+let g:gitgutter_highlight_lines = 0
 
 "-----------------
 " => ctrlp

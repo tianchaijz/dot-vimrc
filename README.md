@@ -1,6 +1,6 @@
 tianchaijz's Vim config
 ==================
-This is a well organized vim configuration.
+This is a well organized Vim configuration.
 
 ## Installation / Upgrading
 
@@ -8,7 +8,7 @@ One command does it all.
 
     curl -o - https://raw.githubusercontent.com/tianchaijz/dot-vimrc/master/install.sh | sh
 
-Don't worry, it will back up your existing vim configuration.
+Don't worry, it will back up your existing Vim configuration.
 
 ## Keybindings
 
@@ -17,15 +17,22 @@ remember them.
 
 ### Running Things
 
-If you open a tmux terminal alongside vim then you can run commands,
-tests, and a REPL from your vim selections.
+If you open a tmux terminal alongside Vim then you can run commands,
+tests, and a REPL from your Vim selections.
 
+#### tslime
 Key           | Action
 :------------ | :-------
 ,rs           | Send selected text to tmux
 ,rv           | Change tmux session, window, and pane attachment
 ,rT           | Run all tests in open feature
 ,rt           | Run test under cursor
+
+#### vim-slime
+Key           | Action
+:------------ | :-------
+C-c C-c       | Send selected text to tmux
+C-c v         | Change tmux session, window, and pane attachment
 
 ### Tags
 Key           | Action
@@ -162,7 +169,7 @@ XML          | xmllint       | built-in
 YAML         | js-yaml       | `npm install -g js-yaml`
 
 ## How to manage this dot-vimrc?
-All plugins are listed in file `bundles.vim` with detailed comments, just add plugins as you like.
+All plugins are listed in `bundles.vim` with detailed comments, just add plugins as you like.
 
 1. `:PluginClean` to clean up unused plugins
 2. `:PluginInstall` to install newly added plugins
@@ -170,6 +177,6 @@ All plugins are listed in file `bundles.vim` with detailed comments, just add pl
 
 Other configurations are also well organized in vimrc.
 
-If you want to synchronize with my config, just run `install.sh` again.
+If you want to synchronize with my configuration, just run `install.sh` again.
 
 Happy coding with Vim!
