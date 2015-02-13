@@ -1,6 +1,8 @@
-tianchaijz's Vim config
+tianchaijz's Vim configuration
 ==================
-This is a well organized Vim configuration.
+
+This Vim configuration is well organized and with many features, you will soon
+be used to it.
 
 ## Installation / Upgrading
 
