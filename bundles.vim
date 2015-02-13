@@ -1,6 +1,6 @@
 " Let Vundle manage Vundle
 " Required!
-Plugin 'gmarik/Vundle'
+Plugin 'gmarik/Vundle.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

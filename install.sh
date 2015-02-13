@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 msg() { echo "--- $@" 1>&2; }
-detail() { echo "	$@" 1>&2; }
+detail() { echo "    $@" 1>&2; }
 
 for i in git make vim; do
     command -v $i >/dev/null
@@ -70,9 +70,9 @@ ln -sf $endpath/vimrc $HOME/.vimrc
 ln -sf $endpath/.vim $vimdir
 ln -sf $endpath/$bundles $vimdir/$bundles
 
-if [ ! -e $vimdir/bundle/Vundle ]; then
+if [ ! -d $vimdir/bundle/Vundle.vim ]; then
     msg "Installing Vundle"
-    git clone http://github.com/gmarik/Vundle.git $vimdir/bundle/Vundle
+    git clone https://github.com/gmarik/Vundle.vim.git $vimdir/bundle/Vundle.vim
 fi
 
 msg "Installing plugins using Vundle"
