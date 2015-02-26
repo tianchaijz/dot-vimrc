@@ -202,12 +202,6 @@ if exists("$TMUX") == 0
     nnoremap <C-l> <C-w>l
 endif
 
-" Fix Escape uncomfortable
-let CursorColumnI = 0
-autocmd InsertEnter * let CursorColumnI = col('.')
-autocmd CursorMovedI * let CursorColumnI = col('.')
-autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
-
 " Fix <Up> and <Down> keys inserting A B character
 inoremap <Esc>OA <Esc>ki
 inoremap <Esc>OB <Esc>ji
