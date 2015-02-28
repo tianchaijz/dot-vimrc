@@ -264,7 +264,7 @@ augroup END
 " Source the vimrc file after saving it
 augroup sourcing
     autocmd!
-    autocmd bufwritepost .vimrc source $MYVIMRC
+    autocmd BufWritePost .vimrc source $MYVIMRC
 augroup END
 
 " Return to last edit position when opening files (You want this!)

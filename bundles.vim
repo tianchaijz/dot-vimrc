@@ -337,7 +337,7 @@ map <leader>ap :Align
 "-----------------
 let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
-let g:slime_python_ipython = 1
+autocmd FileType python let g:slime_python_ipython = 1
 
 "-----------------
 " => tslime
