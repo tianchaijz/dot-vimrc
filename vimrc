@@ -122,12 +122,16 @@ set formatoptions+=mM
 set lbr
 set textwidth=500
 
-autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
-autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+augroup configgroup
+    autocmd!
+    autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+    autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+    autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+    autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+    autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+    autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+    autocmd BufEnter Makefile setlocal noexpandtab
+augroup END
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -255,10 +259,8 @@ highlight clear SignColumn
 " Delete trailing whitespace
 augroup whitespace
     autocmd!
-    autocmd BufWrite *.lua :call DeleteTrailingWS()
-    autocmd BufWrite *.pl :call DeleteTrailingWS()
-    autocmd BufWrite *.py :call DeleteTrailingWS()
-    autocmd BufWrite *.rb :call DeleteTrailingWS()
+    autocmd BufWrite *.lua,*.pl,*.py,*.rb,*.md
+        \ :call DeleteTrailingWS()
 augroup END
 
 " Source the vimrc file after saving it
