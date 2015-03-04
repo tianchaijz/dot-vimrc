@@ -28,11 +28,14 @@ let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 
 " Enable omni completion
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType c setlocal omnifunc=ccomplete#Complete
+augroup omni_completion
+    autocmd!
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType c setlocal omnifunc=ccomplete#Complete
+augroup END
 
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
@@ -222,6 +225,7 @@ Plugin 'tpope/vim-haml'
 " Plugin 'nono/vim-handlebars'
 
 " => Python
+Plugin 'vim-scripts/Python-Syntax-Folding'
 Plugin 'vim-scripts/Pydiction'
 Plugin 'nvie/vim-flake8'
 

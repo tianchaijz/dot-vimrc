@@ -122,7 +122,7 @@ set formatoptions+=mM
 set lbr
 set textwidth=500
 
-augroup configgroup
+augroup lang_config
     autocmd!
     autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
     autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
