@@ -40,7 +40,7 @@ augroup END
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : '',
-    \ 'py' : $VIMHOME . '/bundle/Pydiction/complete-dict',
+    \ 'python' : $VIMHOME . '/bundle/Pydiction/complete-dict',
 \ }
 
 if !exists('g:neocomplcache_omni_patterns')
