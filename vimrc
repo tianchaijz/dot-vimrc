@@ -83,6 +83,7 @@ set wildmenu                       " wildmenu
 set wildmode=longest,list,full     " tab complete files up to longest unambiguous prefix
 set so=7                           " set 7 lines to the cursor - when moving vertically using j/k
 set cc=80                          " color the 80th column
+set foldmethod=syntax              " fold by syntax
 set whichwrap+=<,>,h,l
 
 " Show trailing whitespace
@@ -192,6 +193,7 @@ cmap w!! w !sudo tee >/dev/null %
 noremap ,, ,
 
 nnoremap ; :
+noremap <leader>; ;
 cmap W w
 cmap WQ wq
 cmap Wq wq

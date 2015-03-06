@@ -68,6 +68,25 @@ vii           | Select inside block at indentation
 var           | Select whole Ruby block
 vir           | Select inside Ruby block
 
+### Fold
+Key           | Action
+:------------ | :-------
+zM            | Fold everything
+zm            | Increase the foldlevel by one
+zR            | Unfold everything
+zr            | Decrease the foldlevel by one
+zA            | Recursively toggle the current fold
+za            | Toggle the current fold
+zO            | Open all folds at the cursor
+zo            | Open a fold at the cursor
+zE            | Delete all folds
+zd            | Delete the fold at the cursor
+zc            | Close a fold under cursor
+zj            | Move the cursor to the next fold
+zk            | Move the cursor to the previous fold
+[z            | Move to start of open fold
+]z            | Move to end of open fold
+
 ### Conversion
 Key           | Action
 :------------ | :-------
