@@ -125,13 +125,16 @@ set textwidth=500
 
 augroup lang_config
     autocmd!
-    autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+    autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=80
     autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-    autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-    autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-    autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
-    autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+    autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=80
+    autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=80
+    autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=80
     autocmd BufEnter Makefile setlocal noexpandtab
+    autocmd FileType mkd setlocal spell textwidth=80
+    autocmd Filetype gitcommit setlocal spell textwidth=72
+    autocmd BufRead,BufNewFile *.lua,*.c,*.py,*.sh,*.pl,*.rb,*.erb 2match Underlined /.\%81v/
 augroup END
 
 
@@ -279,12 +282,6 @@ augroup last_edit
                 \   exe "normal! g`\"" |
                 \ endif
 augroup END
-
-" Limit git commit message length
-autocmd Filetype gitcommit setlocal spell textwidth=72
-
-" Add underline when length exceed 81
-autocmd BufRead,BufNewFile *.lua,*.c,*.py,*.sh,*.pl,*.rb,*.erb 2match Underlined /.\%81v/
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
