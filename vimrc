@@ -74,7 +74,6 @@ set title                          " show file in titlebar
 set laststatus=2                   " use 2 lines for the status bar
 set matchtime=2                    " show matching bracket for 0.2 seconds
 set matchpairs+=<:>                " specially for html
-set autoread                       " set to auto read when a file is changed from the outside
 set lazyredraw                     " don't redraw while executing macros (good performance config)
 set magic                          " for regular expressions turn magic on
 set foldcolumn=1                   " add a bit extra margin to the left
@@ -186,6 +185,21 @@ func! MyPrev()
     endif
 endfunc
 
+func! Header(word, ...)
+    if exists("a:1") | let a:width = a:1 | else | let a:width = 80 | endif
+    if exists("a:2") | let a:symbol = a:2 | else | let a:symbol = '#' | endif
+
+    let a:inserted_word = '    ' . a:word . '    '
+    let a:word_width = strlen(a:inserted_word)
+    let a:length_before = (a:width - a:word_width) / 2
+    let a:hashes_before = repeat(a:symbol, a:length_before)
+    let a:hashes_after = repeat(a:symbol, a:width - (a:word_width + a:length_before))
+    let a:hash_line = repeat(a:symbol, a:width)
+    let a:word_line = a:hashes_before . a:inserted_word . a:hashes_after
+
+    :put =a:hash_line | :put =a:word_line | :put =a:hash_line
+endfunc
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mappings
@@ -197,12 +211,11 @@ noremap ,, ,
 
 nnoremap ; :
 noremap <leader>; ;
-cmap W w
+
 cmap WQ wq
-cmap Wq wq
-cmap Q q
-cmap Qa qa
 cmap QA qa
+
+inoremap jj <ESC>
 
 if exists("$TMUX") == 0
     nnoremap <C-h> <C-w>h
@@ -257,6 +270,10 @@ nnoremap W :call MyNext()<CR>
 " autocmd WinLeave * set nocursorline nocursorcolumn
 " autocmd WinEnter * set cursorline cursorcolumn
 " set cursorline cursorcolumn
+
+" Reload the buffer upon detecting change
+set autoread
+autocmd CursorHold,CursorHoldI * silent! checktime
 
 " Clear column highlight theme
 highlight clear SignColumn

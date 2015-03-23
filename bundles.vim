@@ -80,10 +80,11 @@ let g:EasyMotion_leader_key = '<leader>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'tpope/vim-surround'
 Plugin 'sjl/gundo.vim'
+Plugin 'junegunn/vim-easy-align'
 Plugin 'godlygeek/tabular'
+Plugin 'vim-scripts/Align'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tpope/vim-repeat'
-Plugin 'vim-scripts/Align'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'michaeljsmith/vim-indent-object'
 
@@ -109,6 +110,7 @@ Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'Yggdroot/indentLine'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'fholgado/minibufexpl.vim'
+Plugin 'Chiel92/vim-autoformat'
 
 " => Slime & Tmux
 Plugin 'jpalardy/vim-slime'
@@ -228,6 +230,7 @@ Plugin 'tpope/vim-haml'
 Plugin 'vim-scripts/Python-Syntax-Folding'
 Plugin 'vim-scripts/Pydiction'
 Plugin 'nvie/vim-flake8'
+Plugin 'hynek/vim-python-pep8-indent'
 
 " => Markup Language
 Plugin 'plasticboy/vim-markdown'
@@ -323,7 +326,7 @@ nnoremap <leader>a :Ack
 nnoremap <leader>v V`]
 
 "-----------------
-" => Align
+" => text alignment
 "-----------------
 " Stop Align plugin from forcing its mappings on us
 let g:loaded_AlignMapsPlugin = 1
@@ -335,6 +338,11 @@ map <leader>a, :Align ,<CR>
 map <leader>a<bar> :Align <bar><CR>
 " Prompt for align character
 map <leader>ap :Align
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 "-----------------
 " => vim-slime
