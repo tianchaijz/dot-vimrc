@@ -99,6 +99,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'
 Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-easytags'
@@ -196,9 +197,13 @@ let g:easytags_resolve_links = 1
 "-----------------
 " => ctrlp
 "-----------------
-set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-let g:ctrlp_max_files = 0
+set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class
+set wildignore+=.DS_Store,*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
+let g:ctrlp_custom_ignore = {
+    \ 'dir': '\v[\/](node_modules|target|dist|deps)|(\.(swp|ico|git|svn))$',
+    \ 'file': '\v\.(exe|so|dll)$',
+\ }
 
 "-----------------
 " => indentLine
