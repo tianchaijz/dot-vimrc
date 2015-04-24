@@ -186,10 +186,10 @@ func! MyPrev()
 endfunc
 
 func! Header(word, ...)
-    if exists("a:1") | let a:width = a:1 | else | let a:width = 80 | endif
-    if exists("a:2") | let a:symbol = a:2 | else | let a:symbol = '#' | endif
+    if exists("a:1") | let a:symbol = a:1 | else | let a:symbol = '#' | endif
+    if exists("a:2") | let a:width = a:2 | else | let a:width = 80 | endif
 
-    let a:inserted_word = '    ' . a:word . '    '
+    let a:inserted_word = '  ' . a:word . '  '
     let a:word_width = strlen(a:inserted_word)
     let a:length_before = (a:width - a:word_width) / 2
     let a:hashes_before = repeat(a:symbol, a:length_before)
@@ -238,7 +238,7 @@ nnoremap <leader>hc :call SetColorColumn()<CR>
 nnoremap <leader>dt :call DeleteTrailingWS()<CR>
 
 " Force redraw
-map <silent> <leader>r :redraw!<CR>
+map <silent> \r :redraw!<CR>
 
 " Toggle spell checking
 map <leader>ss :setlocal spell!<CR>

@@ -112,6 +112,9 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'jeetsukumaran/vim-markology'
+Plugin 'vim-scripts/SearchComplete'
+Plugin 'vim-scripts/Mark'
 
 " => Slime & Tmux
 Plugin 'jpalardy/vim-slime'
@@ -210,6 +213,11 @@ let g:ctrlp_custom_ignore = {
 "-----------------
 let g:indentLine_color_term = 239
 let g:indentLine_char = '|'
+
+"-----------------
+" => vim-markology
+"-----------------
+let g:markology_include = "abcdefghijklmnopqrstuvwxyz"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
