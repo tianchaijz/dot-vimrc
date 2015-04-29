@@ -113,7 +113,6 @@ Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'jeetsukumaran/vim-markology'
-Plugin 'vim-scripts/SearchComplete'
 Plugin 'vim-scripts/Mark'
 
 " => Slime & Tmux
