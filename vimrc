@@ -83,6 +83,7 @@ set wildmode=longest,list,full     " tab complete files up to longest unambiguou
 set so=7                           " set 7 lines to the cursor - when moving vertically using j/k
 set cc=80                          " color the 80th column
 set foldmethod=syntax              " fold by syntax
+set clipboard=unnamed              " copy selection to OS X clipboard
 set whichwrap+=<,>,h,l
 
 " Show trailing whitespace
