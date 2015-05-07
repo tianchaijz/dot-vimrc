@@ -59,7 +59,7 @@ set hlsearch
 " Editor settings
 set history=1000
 set tm=2000                        " leader key timeout
-set nofoldenable                   " disable folding"
+set nofoldenable                   " disable folding
 set confirm                        " prompt when existing from an unsaved file
 set backspace=indent,eol,start     " more powerful backspacing
 set t_Co=256                       " explicitly tell vim that the terminal has 256 colors

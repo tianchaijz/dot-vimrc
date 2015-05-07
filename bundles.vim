@@ -243,6 +243,7 @@ Plugin 'vim-scripts/Python-Syntax-Folding'
 Plugin 'vim-scripts/Pydiction'
 Plugin 'nvie/vim-flake8'
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'tell-k/vim-autopep8'
 
 " => Markup Language
 Plugin 'plasticboy/vim-markdown'
