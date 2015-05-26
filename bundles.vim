@@ -216,7 +216,7 @@ let g:indentLine_char = '|'
 "-----------------
 " => vim-markology
 "-----------------
-let g:markology_include = "abcdefghijklmnopqrstuvwxyz"
+let g:markology_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -362,6 +362,7 @@ nmap ga <Plug>(EasyAlign)
 "-----------------
 let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
+let g:slime_default_config = {"socket_name": "default", "target_pane": ":"}
 autocmd FileType python let g:slime_python_ipython = 1
 
 "-----------------
