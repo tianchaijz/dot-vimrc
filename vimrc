@@ -131,6 +131,7 @@ augroup lang_config
     autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=80
     autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=80
+    autocmd BufRead,BufNewFile *.tex setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=80 ft=tex
     autocmd BufEnter Makefile setlocal noexpandtab
     autocmd FileType mkd setlocal spell textwidth=80
     autocmd Filetype gitcommit setlocal spell textwidth=72

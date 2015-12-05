@@ -297,6 +297,10 @@ let g:rbpt_colorpairs = [
 
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 
+"-----------------
+" => vim-latex
+"-----------------
+let g:tex_conceal = ''
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color schemes
