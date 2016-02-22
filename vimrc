@@ -311,6 +311,9 @@ nnoremap <silent> <leader>2s F:r"Ea"<Esc>
 " Convert string to symbol
 nnoremap <silent> <leader>2y F"r:,x
 
+" Visual substitute
+vmap ss y:%s/<C-R>"/g<left><left>/
+
 " Convert name to snake_case
 nmap <leader>2_ cr_
 " Convert name to camelCase
