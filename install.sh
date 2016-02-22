@@ -59,7 +59,7 @@ done
 
 msg "Creating symlinks"
 detail "$endpath/vimrc -> $HOME/.vimrc"
-detail "$endpath/.vim   -> $HOME/.vim"
+detail "$endpath/.vim -> $HOME/.vim"
 detail "$endpath/$bundles -> $vimdir/$bundles"
 
 if [ ! -d $endpath/.vim/bundle ]; then
