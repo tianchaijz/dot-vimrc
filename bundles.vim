@@ -13,7 +13,7 @@ Plugin 'ervandew/supertab'
 
 " => snippets
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plugin 'tianchaijz/vim-snippets'
 
 "-----------------
 " => neocomplcache
