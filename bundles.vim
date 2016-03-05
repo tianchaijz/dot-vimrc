@@ -7,7 +7,6 @@ Plugin 'gmarik/Vundle.vim'
 " Code completions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'Shougo/neocomplcache'
-Plugin 'mattn/emmet-vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'ervandew/supertab'
 
@@ -36,12 +35,6 @@ augroup omni_completion
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType c setlocal omnifunc=ccomplete#Complete
 augroup END
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'python' : $VIMHOME . '/bundle/Pydiction/complete-dict',
-\ }
 
 if !exists('g:neocomplcache_omni_patterns')
     let g:neocomplcache_omni_patterns = {}
@@ -223,36 +216,17 @@ let g:markology_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 " Syntax/Indent for language enhancement
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Web Backend
-Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'lepture/vim-jinja'
-" Plugin 'digitaltoad/vim-jade'
-" Plugin 'tpope/vim-rails'
 
 " => Web Frontend
-Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'nono/jquery.vim'
 Plugin 'tpope/vim-haml'
-" Plugin 'groenewege/vim-less'
-" Plugin 'wavded/vim-stylus'
-" Plugin 'nono/vim-handlebars'
-
-" => Python
-Plugin 'vim-scripts/Python-Syntax-Folding'
-Plugin 'vim-scripts/Pydiction'
-Plugin 'nvie/vim-flake8'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'tell-k/vim-autopep8'
 
 " => Markup Language
 Plugin 'plasticboy/vim-markdown'
 
 " => LaTeX
 Plugin 'jcf/vim-latex'
-
-" => Ruby
-" Plugin 'tpope/vim-endwise'
 
 " => Go
 Plugin 'fatih/vim-go'
@@ -266,11 +240,6 @@ Plugin 'rosstimson/scala-vim-support'
 " => Haskell stuff
 Plugin 'vim-scripts/haskell.vim'
 Plugin 'pbrisbin/html-template-syntax'
-
-"-----------------
-" => Pydiction
-"-----------------
-au BufRead,BufNewFile *.py let g:pydiction_location = $VIMHOME . '/bundle/Pydiction/complete-dict'
 
 "-----------------
 " => Rainbow parentheses for Lisp and variants
