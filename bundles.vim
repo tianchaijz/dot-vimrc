@@ -101,7 +101,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
 Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'Yggdroot/indentLine'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'Chiel92/vim-autoformat'
@@ -310,7 +309,7 @@ nmap <silent> <leader>u :GundoToggle<CR>
 set pastetoggle=<F2>
 
 nmap <leader>tt :TagbarToggle<CR>
-nmap <F3> :IndentGuidesToggle<CR>
+nmap <leader>hi :IndentGuidesToggle<CR>
 nmap <F4> :TagbarToggle<CR>
 nmap <F5> :NERDTreeToggle<CR>
 nnoremap <F10> :set number! number?<CR>
