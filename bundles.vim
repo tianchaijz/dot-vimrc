@@ -225,6 +225,13 @@ autocmd FileType c,cpp,objc nnoremap <buffer><leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><leader>cf :ClangFormat<CR>
 nmap <leader>C :ClangFormatAutoToggle<CR>
 
+"-----------------
+" => syntastic
+"-----------------
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax/Indent for language enhancement
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
