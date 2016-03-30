@@ -106,6 +106,7 @@ Plugin 'fholgado/minibufexpl.vim'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'jeetsukumaran/vim-markology'
 Plugin 'vim-scripts/Mark'
+Plugin 'rhysd/vim-clang-format'
 
 " => Slime & Tmux
 Plugin 'jpalardy/vim-slime'
@@ -210,6 +211,19 @@ let g:indentLine_char = '|'
 "-----------------
 let g:markology_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+"-----------------
+" => clang-format
+"-----------------
+let g:clang_format#code_style = "webkit"
+let g:clang_format#style_options = {
+    \ "IndentWidth": 2,
+    \ "Standard": "Cpp11",
+    \ "AllowShortFunctionsOnASingleLine": "false"
+\ }
+
+autocmd FileType c,cpp,objc nnoremap <buffer><leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><leader>cf :ClangFormat<CR>
+nmap <leader>C :ClangFormatAutoToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax/Indent for language enhancement
