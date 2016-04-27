@@ -285,6 +285,7 @@ let g:rbpt_colorpairs = [
 \ ]
 
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
+autocmd BufRead,BufNewFile *.zt set filetype=ztest
 
 "-----------------
 " => vim-latex
