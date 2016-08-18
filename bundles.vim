@@ -107,12 +107,24 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'jeetsukumaran/vim-markology'
 Plugin 'vim-scripts/Mark'
 Plugin 'rhysd/vim-clang-format'
+Plugin 'let-def/ocp-indent-vim'
 
 " => Slime & Tmux
 Plugin 'jpalardy/vim-slime'
 Plugin 'jgdavey/tslime.vim'
 Plugin 'jgdavey/vim-turbux'
 Plugin 'christoomey/vim-tmux-navigator'
+
+"-----------------
+" => merlin
+"-----------------
+" opam install ocp-indent merlin
+" :execute "helptags " . g:opamshare . "/merlin/vim/doc"
+" <C-x><C-o> for completion
+" https://github.com/the-lambda-church/merlin/wiki/vim-from-scratch
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+nmap <leader>i :MerlinTypeOf<CR>
 
 "-----------------
 " => nerdtree
