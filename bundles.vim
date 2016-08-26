@@ -226,7 +226,7 @@ let g:markology_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 "-----------------
 " => clang-format
 "-----------------
-let g:clang_format#code_style = "webkit"
+let g:clang_format#code_style = "llvm"
 let g:clang_format#style_options = {
     \ "IndentWidth": 2,
     \ "Standard": "Cpp11",
@@ -240,7 +240,9 @@ nmap <leader>C :ClangFormatAutoToggle<CR>
 "-----------------
 " => syntastic
 "-----------------
-let g:syntastic_cpp_compiler = 'clang++'
+" https://github.com/scrooloose/syntastic/wiki/C%3A---gcc
+let g:syntastic_c_compiler_options = ' -I$(PWD) -I/usr/include -I/usr/local/include -L$(PWD) -L/usr/lib -L/usr/local/lib'
+let g:syntastic_cpp_compiler = 'gcc'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 
@@ -343,6 +345,7 @@ nmap <silent> <leader>u :GundoToggle<CR>
 set pastetoggle=<F2>
 
 nmap <leader>tt :TagbarToggle<CR>
+nmap <leader>nt :NERDTreeToggle<CR>
 nmap <leader>hi :IndentGuidesToggle<CR>
 nmap <F4> :TagbarToggle<CR>
 nmap <F5> :NERDTreeToggle<CR>

@@ -243,7 +243,13 @@ nnoremap <leader>dt :call DeleteTrailingWS()<CR>
 map <silent> \r :redraw!<CR>
 
 " Toggle spell checking
-map <leader>ss :setlocal spell!<CR>
+map <leader>ss :setlocal spell! spell?<CR>
+
+" Toggle paste
+nmap <leader>p :set paste! paste?<CR>"
+
+" Toggle number
+nmap <leader>nb :set number! number?<CR>
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
