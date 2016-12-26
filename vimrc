@@ -170,8 +170,8 @@ func! DeleteTrailingWS()
     exe "normal `z"
 endfunc
 
-" MyNext() and MyPrev(): Movement between tabs OR buffers
-func! MyNext()
+" TabNext() and TabPrev(): Movement between tabs OR buffers
+func! TabNext()
     if exists('*tabpagenr') && tabpagenr('$') != 1
         normal gt
     else
@@ -179,7 +179,7 @@ func! MyNext()
     endif
 endfunc
 
-func! MyPrev()
+func! TabPrev()
     if exists('*tabpagenr') && tabpagenr('$') != '1'
         normal gT
     else
@@ -200,6 +200,36 @@ func! Header(word, ...)
     let a:word_line = a:hashes_before . a:inserted_word . a:hashes_after
 
     :put =a:hash_line | :put =a:word_line | :put =a:hash_line
+endfunc
+
+func! QuickWrap(wrapper)
+    let l:w = a:wrapper
+    let l:inside_or_around = (&selection == 'exclusive') ? ('i') : ('a')
+    normal `>
+    exec "normal " . inside_or_around . escape(w, '\')
+    normal `<
+    exec "normal i" . escape(w, '\')
+    normal `<
+endfunc
+
+func! QuickRun()
+    exec "w"
+    let l:ft = &filetype
+    if ft == 'c'
+        exec "!gcc -g -O0 -Wall -Werror -Wno-unused -Wpointer-arith % -o %<.out && time ./%<.out"
+    elseif ft == 'cpp' || ft == 'cc'
+        exec "!g++ -g -O0 -Wall -Werror -Wno-unused -Wpointer-arith --std=c++11 % -o %<.out && time ./%<.out"
+    elseif ft == 'python'
+        exec "!time python2.7 %"
+    elseif ft == 'lua'
+        exec "!time lua %"
+    elseif ft == 'java'
+        exec "!javac % && time java %<"
+    elseif ft == 'go'
+        exec "!go build % && time ./%<"
+    elseif ft == 'sh'
+        exec "!time sh %"
+    endif
 endfunc
 
 
@@ -267,8 +297,8 @@ vnoremap <leader>tee :!tee /tmp/t<CR>
 vnoremap <leader>cat :!cat /tmp/t<CR>
 
 " Movement between tabs OR buffers
-nnoremap Q :call MyPrev()<CR>
-nnoremap W :call MyNext()<CR>
+nnoremap Q :call TabPrev()<CR>
+nnoremap W :call TabNext()<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -303,9 +333,9 @@ augroup END
 augroup last_edit
     autocmd!
     autocmd BufReadPost *
-                \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                \   exe "normal! g`\"" |
-                \ endif
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
 augroup END
 
 
@@ -330,3 +360,17 @@ nmap <leader>2m crm
 nmap <leader>2u cru
 " Convert name to dash-case
 nmap <leader>2- cr-
+
+" Quick wrap
+vnoremap <leader>qs <Esc>:call QuickWrap("'")<CR>
+vnoremap <leader>qd <Esc>:call QuickWrap('"')<CR>
+vnoremap <leader>qb <Esc>:call QuickWrap('`')<CR>
+
+" Quick run
+nnoremap <leader>1 :call QuickRun()<CR>
+
+" Navigate between split panes
+nnoremap gh <C-W><C-H>
+nnoremap gj <C-W><C-J>
+nnoremap gk <C-W><C-K>
+nnoremap gl <C-W><C-L>
