@@ -72,7 +72,6 @@ let g:EasyMotion_leader_key = '<leader>'
 " Fast editing
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'tpope/vim-surround'
-Plugin 'sjl/gundo.vim'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'godlygeek/tabular'
 Plugin 'vim-scripts/Align'
@@ -228,7 +227,7 @@ let g:markology_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 "-----------------
 let g:clang_format#code_style = "llvm"
 let g:clang_format#style_options = {
-    \ "IndentWidth": 2,
+    \ "IndentWidth": 4,
     \ "Standard": "Cpp11",
     \ "AllowShortFunctionsOnASingleLine": "false"
 \ }
@@ -241,9 +240,9 @@ nmap <leader>C :ClangFormatAutoToggle<CR>
 " => syntastic
 "-----------------
 " https://github.com/scrooloose/syntastic/wiki/C%3A---gcc
-let g:syntastic_c_compiler_options = ' -I$(PWD) -I/usr/include -I/usr/local/include -L$(PWD) -L/usr/lib -L/usr/local/lib'
+let g:syntastic_c_compiler_options = ' -I$(PWD) -I$HOME/lua/include -I/usr/include -I/usr/local/include -L$(PWD) -L/usr/lib -L/usr/local/lib'
 let g:syntastic_cpp_compiler = 'gcc'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -I$(PWD) -I$HOME/lua/include -I/usr/include -I/usr/local/include -L$(PWD) -L/usr/lib -L/usr/local/lib'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -257,6 +256,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'tpope/vim-haml'
 
 " => Markup Language
+Plugin 'mzlogin/vim-markdown-toc'
 Plugin 'plasticboy/vim-markdown'
 
 " => LaTeX
@@ -329,16 +329,6 @@ Plugin 'vim-scripts/DrawIt'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin keybindings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"-----------------
-" => Gundo
-"-----------------
-let g:gundo_width = 50
-let g:gundo_preview_height = 20
-let g:gundo_right = 0
-
-" Show undo tree
-nmap <silent> <leader>u :GundoToggle<CR>
-
 "-----------------
 " => paste, nerdtree, tagbar
 "-----------------
