@@ -229,7 +229,10 @@ let g:clang_format#code_style = "llvm"
 let g:clang_format#style_options = {
     \ "IndentWidth": 4,
     \ "Standard": "Cpp11",
-    \ "AllowShortFunctionsOnASingleLine": "false"
+    \ "AllowShortFunctionsOnASingleLine": "false",
+    \ "AlwaysBreakTemplateDeclarations": "true",
+    \ "AlignEscapedNewlinesLeft": "true",
+    \ "ColumnLimit": 200,
 \ }
 
 autocmd FileType c,cpp,objc nnoremap <buffer><leader>cf :<C-u>ClangFormat<CR>
