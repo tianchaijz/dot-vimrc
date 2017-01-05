@@ -2,6 +2,10 @@
 
 msg() { echo "--- $@" 1>&2; }
 detail() { echo "    $@" 1>&2; }
+symlink() {
+    detail "$1 -> $2"
+    ln -sf $1 $2
+}
 
 for i in git make vim; do
     command -v $i >/dev/null
@@ -13,9 +17,11 @@ done
 
 endpath="$HOME/.tianchaijz-vim"
 vimdir="$HOME/.vim"
+plug=plug.vim
 bundles=bundles.vim
 pull_enable=true
 pull_only=false
+ycm_conf=.ycm_extra_conf.py
 
 for arg in "$@"; do
     case $arg in
@@ -58,24 +64,20 @@ for i in $vimdir $HOME/.vimrc $HOME/.gvimrc; do
 done
 
 msg "Creating symlinks"
-detail "$endpath/vimrc -> $HOME/.vimrc"
-detail "$endpath/.vim -> $HOME/.vim"
-detail "$endpath/$bundles -> $vimdir/$bundles"
+symlink $endpath/vimrc $HOME/.vimrc
+symlink $endpath/.vim $vimdir
+symlink $endpath/$bundles $vimdir/$bundles
+symlink $endpath/$plug $vimdir/$plug
+symlink $endpath/$ycm_conf $vimdir/$ycm_conf
 
-if [ ! -d $endpath/.vim/bundle ]; then
-    mkdir -p $endpath/.vim/bundle
+if [ ! -f $vimdir/autoload/plug.vim ]; then
+    msg "Installing Plug"
+    mkdir -p $vimdir/plugged
+    mkdir -p $vimdir/autoload
+    curl -fLo $vimdir/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
 fi
 
-ln -sf $endpath/vimrc $HOME/.vimrc
-ln -sf $endpath/.vim $vimdir
-ln -sf $endpath/$bundles $vimdir/$bundles
-
-if [ ! -d $vimdir/bundle/Vundle.vim ]; then
-    msg "Installing Vundle"
-    git clone https://github.com/gmarik/Vundle.vim.git $vimdir/bundle/Vundle.vim
-fi
-
-msg "Installing plugins using Vundle"
+msg "Installing plugins using Plug"
 msg "It may take a bit of time, please wait ..."
-vim -u $endpath/vimrc +PluginInstall +qall
+vim -u $endpath/vimrc +PlugInstall +qall
 msg "Install successful!"

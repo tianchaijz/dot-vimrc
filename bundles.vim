@@ -1,32 +1,33 @@
-" Let Vundle manage Vundle
-" Required!
-Plugin 'gmarik/Vundle.vim'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  Plugin Configurations
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let $PLUG = $VIMHOME . "/plug.vim"
+source $PLUG
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Code completions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'Shougo/neocomplcache'
-Plugin 'Raimondi/delimitMate'
-Plugin 'ervandew/supertab'
-
-" => snippets
-Plugin 'SirVer/ultisnips'
-Plugin 'tianchaijz/vim-snippets'
-
-"-----------------
-" => neocomplcache
-"-----------------
+" -----------------------------------------------------------------------------
+" YouCompleteMe
+" -----------------------------------------------------------------------------
 set completeopt-=preview
-let g:neocomplcache_enable_at_startup = 1
-let g:neoComplcache_disableautocomplete = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_enable_camel_case_completion = 1
+let g:ycm_global_ycm_extra_conf = $VIMHOME . '/.ycm_extra_conf.py'
+let g:ycm_extra_conf_globlist = []
+let g:ycm_always_populate_location_list = 0
+let g:ycm_auto_trigger = 1
+let g:ycm_enable_diagnostic_highlighting = 1
+let g:ycm_enable_diagnostic_signs = 1
+let g:ycm_max_diagnostics_to_display = 10000
+let g:ycm_min_num_identifier_candidate_chars = 0
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_open_loclist_on_ycm_diags = 1
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_filetype_blacklist = {
+    \ 'vim': 1,
+    \ 'markdown': 1,
+\}
 
-" Enable omni completion
+" YouCompleteMe Omni-Completion
 augroup omni_completion
     autocmd!
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -36,98 +37,65 @@ augroup omni_completion
     autocmd FileType c setlocal omnifunc=ccomplete#Complete
 augroup END
 
-if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
+" YouCompleteMe key bindings
+nnoremap <F11> :YcmForceCompileAndDiagnostics<CR>
+nnoremap <F12> :YcmDiags<CR>
 
-"-----------------
-" => supertab
-"-----------------
-let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
-let g:SuperTabRetainCompletionType = 2
+" YcmCompleter Subcommands
+nnoremap <silent> <leader>yd :YcmCompleter GetDoc<CR>
+nnoremap <silent> <leader>yf :YcmCompleter FixIt<CR>
+nnoremap <silent> <leader>yg :YcmCompleter GoTo<CR>
+nnoremap <silent> <leader>yi :YcmCompleter GoToInclude<CR>
+nnoremap <silent> <leader>yt :YcmCompleter GetType<CR>
 
-"-----------------
-" => ultisnips
-"-----------------
+
+" -----------------------------------------------------------------------------
+" syntastic
+" -----------------------------------------------------------------------------
+" https://github.com/scrooloose/syntastic/wiki/C%3A---gcc
+let g:syntastic_c_compiler_options = ' -I$(PWD) -I$HOME/lua/include -I/usr/include -I/usr/local/include -L$(PWD) -L/usr/lib -L/usr/local/lib'
+let g:syntastic_cpp_compiler = 'gcc'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -I$(PWD) -I$HOME/lua/include -I/usr/include -I/usr/local/include -L$(PWD) -L/usr/lib -L/usr/local/lib'
+
+
+" -----------------------------------------------------------------------------
+" UltiSnips
+" -----------------------------------------------------------------------------
 let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 let g:UltiSnipsEditSplit = 'vertical'
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Fast navigation
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'edsono/vim-matchit'
-Plugin 'Lokaltog/vim-easymotion'
-
-"-----------------
-" => easymotion
-"-----------------
+" -----------------------------------------------------------------------------
+" EasyMotion
+" -----------------------------------------------------------------------------
 let g:EasyMotion_leader_key = '<leader>'
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Fast editing
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'tpope/vim-surround'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'godlygeek/tabular'
-Plugin 'vim-scripts/Align'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'tpope/vim-repeat'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'michaeljsmith/vim-indent-object'
-
-" => Detect file encoding
-Plugin 'vim-scripts/AutoFenc.vim'
+" -----------------------------------------------------------------------------
+" SuperTab
+" -----------------------------------------------------------------------------
+let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
+let g:SuperTabRetainCompletionType = 2
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" IDE features
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'majutsushi/tagbar'
-Plugin 'mileszs/ack.vim'
-Plugin 'rking/ag.vim'
-Plugin 'kien/ctrlp.vim'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-easytags'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
-Plugin 'scrooloose/syntastic'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'fholgado/minibufexpl.vim'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'jeetsukumaran/vim-markology'
-Plugin 'vim-scripts/Mark'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'let-def/ocp-indent-vim'
-
-" => Slime & Tmux
-Plugin 'jpalardy/vim-slime'
-Plugin 'jgdavey/tslime.vim'
-Plugin 'jgdavey/vim-turbux'
-Plugin 'christoomey/vim-tmux-navigator'
-
-"-----------------
-" => merlin
-"-----------------
+" -----------------------------------------------------------------------------
+" OCaml Merlin
+" -----------------------------------------------------------------------------
 " opam install ocp-indent merlin
 " :execute "helptags " . g:opamshare . "/merlin/vim/doc"
 " <C-x><C-o> for completion
 " https://github.com/the-lambda-church/merlin/wiki/vim-from-scratch
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
-nmap <leader>i :MerlinTypeOf<CR>
 
-"-----------------
-" => nerdtree
-"-----------------
+autocmd FileType ocaml nmap <leader>i :MerlinTypeOf<CR>
+
+
+" -----------------------------------------------------------------------------
+" NERDTree
+" -----------------------------------------------------------------------------
 let NERDChristmasTree = 0
 let NERDTreeWinSize = 30
 let NERDTreeChDirMode = 2
@@ -136,15 +104,17 @@ let NERDTreeSortOrder = ['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
 let NERDTreeShowBookmarks = 1
 let NERDTreeWinPos = 'right'
 
-"-----------------
-" => nerdcommenter
-"-----------------
+
+" -----------------------------------------------------------------------------
+" NERDcommenter
+" -----------------------------------------------------------------------------
 let NERDSpaceDelims = 1
 let NERDCompactSexyComs = 1
 
-"-----------------
-" => tagbar
-"-----------------
+
+" -----------------------------------------------------------------------------
+" tagbar
+" -----------------------------------------------------------------------------
 let g:tagbar_left = 1
 let g:tagbar_width = 30
 let g:tagbar_autofocus = 1
@@ -160,49 +130,10 @@ let g:tagbar_type_lua = {
     \ ],
 \ }
 
-if executable('coffeetags')
-    let g:tagbar_type_coffee = {
-        \ 'ctagsbin' : 'coffeetags',
-        \ 'ctagsargs' : '',
-        \ 'kinds' : [
-        \ 'f:functions',
-        \ 'o:object',
-        \ ],
-        \ 'sro' : ".",
-        \ 'kind2scope' : {
-        \ 'f' : 'object',
-        \ 'o' : 'object',
-        \ }
-    \ }
-endif
 
-let g:tagbar_type_markdown = {
-    \ 'ctagstype' : 'markdown',
-    \ 'sort' : 0,
-    \ 'kinds' : [
-        \ 'h:sections'
-    \ ]
-\ }
-
-"-----------------
-" => easy-tags
-"-----------------
-" Prevent automatic ctag updates
-let g:easytags_auto_update = 0
-let g:easytags_auto_highlight = 0
-let g:easytags_on_cursorhold = 0
-
-" Generate tags manually
-nmap <leader>tu :UpdateTags<CR>
-
-" Scan recursively, not just current file
-let g:easytags_autorecurse = 1
-" Follow symbolic links
-let g:easytags_resolve_links = 1
-
-"-----------------
-" => ctrlp
-"-----------------
+" -----------------------------------------------------------------------------
+" ctrlp
+" -----------------------------------------------------------------------------
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class
 set wildignore+=.DS_Store,*/.git/*,*/.hg/*,*/.svn/*
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
@@ -211,20 +142,28 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(exe|so|dll)$',
 \ }
 
-"-----------------
-" => indentLine
-"-----------------
-let g:indentLine_color_term = 239
-let g:indentLine_char = '|'
 
-"-----------------
-" => vim-markology
-"-----------------
+" -----------------------------------------------------------------------------
+" vim-markology
+" -----------------------------------------------------------------------------
 let g:markology_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-"-----------------
-" => clang-format
-"-----------------
+
+" -----------------------------------------------------------------------------
+" Align
+" -----------------------------------------------------------------------------
+let g:loaded_AlignMapsPlugin = 1
+
+" Stop Align plugin from forcing its mappings on us
+map <leader>a= :Align =<CR>
+map <leader>a, :Align ,<CR>
+map <leader>a<Bar> :Align <Bar><CR>
+map <leader>ap :Align
+
+
+" -----------------------------------------------------------------------------
+" clang-format
+" -----------------------------------------------------------------------------
 let g:clang_format#code_style = "llvm"
 let g:clang_format#style_options = {
     \ "IndentWidth": 4,
@@ -237,50 +176,12 @@ let g:clang_format#style_options = {
 
 autocmd FileType c,cpp,objc nnoremap <buffer><leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><leader>cf :ClangFormat<CR>
-nmap <leader>C :ClangFormatAutoToggle<CR>
-
-"-----------------
-" => syntastic
-"-----------------
-" https://github.com/scrooloose/syntastic/wiki/C%3A---gcc
-let g:syntastic_c_compiler_options = ' -I$(PWD) -I$HOME/lua/include -I/usr/include -I/usr/local/include -L$(PWD) -L/usr/lib -L/usr/local/lib'
-let g:syntastic_cpp_compiler = 'gcc'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -I$(PWD) -I$HOME/lua/include -I/usr/include -I/usr/local/include -L$(PWD) -L/usr/lib -L/usr/local/lib'
+autocmd FileType c,cpp,objc nmap <leader>C :ClangFormatAutoToggle<CR>
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Syntax/Indent for language enhancement
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Web Backend
-Plugin 'lepture/vim-jinja'
-
-" => Web Frontend
-Plugin 'pangloss/vim-javascript'
-Plugin 'tpope/vim-haml'
-
-" => Markup Language
-Plugin 'mzlogin/vim-markdown-toc'
-Plugin 'plasticboy/vim-markdown'
-
-" => LaTeX
-Plugin 'jcf/vim-latex'
-
-" => Go
-Plugin 'fatih/vim-go'
-
-" => FPs
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'wlangstroth/vim-racket'
-Plugin 'vim-scripts/VimClojure'
-Plugin 'rosstimson/scala-vim-support'
-
-" => Haskell stuff
-Plugin 'vim-scripts/haskell.vim'
-Plugin 'pbrisbin/html-template-syntax'
-
-"-----------------
-" => Rainbow parentheses for Lisp and variants
-"-----------------
+" -----------------------------------------------------------------------------
+" Rainbow parentheses for Lisp and variants
+" -----------------------------------------------------------------------------
 let g:rbpt_max = 16
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -302,95 +203,43 @@ let g:rbpt_colorpairs = [
 \ ]
 
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
-autocmd BufRead,BufNewFile *.zt set filetype=ztest
 
-"-----------------
-" => vim-latex
-"-----------------
+
+" -----------------------------------------------------------------------------
+" vim-latex
+" -----------------------------------------------------------------------------
 let g:tex_conceal = ''
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Color schemes
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'jdevera/vim-cs-explorer'
-Plugin 'ColorSchemeMenuMaker'
-Plugin 'rickharris/vim-blackboard'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'rickharris/vim-monokai'
-Plugin 'tpope/vim-vividchalk'
-Plugin 'Lokaltog/vim-distinguished'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'fisadev/fisa-vim-colorscheme'
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'vim-scripts/DrawIt'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin keybindings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"-----------------
-" => paste, nerdtree, tagbar
-"-----------------
-set pastetoggle=<F2>
-
-nmap <leader>tt :TagbarToggle<CR>
-nmap <leader>nt :NERDTreeToggle<CR>
-nmap <leader>hi :IndentGuidesToggle<CR>
-nmap <F4> :TagbarToggle<CR>
-nmap <F5> :NERDTreeToggle<CR>
-nnoremap <F10> :set number! number?<CR>
-nnoremap <leader>a :Ack
-nnoremap <leader>v V`]
-
-"-----------------
-" => text alignment
-"-----------------
-" Stop Align plugin from forcing its mappings on us
-let g:loaded_AlignMapsPlugin = 1
-" Align on equal signs
-map <leader>a= :Align =<CR>
-" Align on commas
-map <leader>a, :Align ,<CR>
-" Align on pipes
-map <leader>a<bar> :Align <bar><CR>
-" Prompt for align character
-map <leader>ap :Align
-
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-"-----------------
-" => vim-slime
-"-----------------
+" -----------------------------------------------------------------------------
+" vim-slime
+" -----------------------------------------------------------------------------
 let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
 let g:slime_default_config = {"socket_name": "default", "target_pane": ":"}
+
 autocmd FileType python let g:slime_python_ipython = 1
 
-"-----------------
-" => tslime
-"-----------------
+
+" -----------------------------------------------------------------------------
+" tslime
+" -----------------------------------------------------------------------------
 vmap <silent> <leader>rs <Plug>SendSelectionToTmux
 nmap <silent> <leader>rs <Plug>NormalModeSendToTmux
 nmap <silent> <leader>re :Tmux<CR>
 nmap <silent> <leader>rv <Plug>SetTmuxVars
 
-"-----------------
-" => turbux
-"-----------------
+
+" -----------------------------------------------------------------------------
+" turbux
+" -----------------------------------------------------------------------------
 let g:no_turbux_mappings = 1
-nmap <leader>rT <Plug>SendTestToTmux
 nmap <leader>rt <Plug>SendFocusedTestToTmux
 
-"-----------------
-" => fugitive
-"-----------------
+
+" -----------------------------------------------------------------------------
+" fugitive
+" -----------------------------------------------------------------------------
 let g:extradite_width = 60
 
 " Hide messy Ggrep output and copen automatically
@@ -416,28 +265,23 @@ func! CommittedFiles()
 endfunc
 
 command! -nargs=1 GGrep call NonintrusiveGitGrep(<q-args>)
+
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gg :copen<CR>:GGrep
 nmap <leader>gl :Extradite!<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <leader>gb :Gblame<CR>
 
-" Show list of last-committed files
-nnoremap <silent> <leader>g? :call CommittedFiles()<CR>:copen<CR>
 
-"-----------------
-" => vim-gitgutter
-"-----------------
+" -----------------------------------------------------------------------------
+" vim-gitgutter
+" -----------------------------------------------------------------------------
 let g:gitgutter_highlight_lines = 0
 
-"-----------------
-" => ctrlp
-"-----------------
-nnoremap <silent> <leader><Space> :CtrlP<CR>
 
-"-----------------
-" => keybindings from Emacs
-"-----------------
+" -----------------------------------------------------------------------------
+" Keybindings from Emacs
+" -----------------------------------------------------------------------------
 " https://github.com/maxbrunsfeld/vim-emacs-bindings
 func! s:home()
     let start_col = col('.')
@@ -484,3 +328,16 @@ cmap <C-e> <End>
 cnoremap <C-d> <Del>
 cnoremap <C-h> <BS>
 cnoremap <C-k> <C-f>D<C-c><C-c>:<Up>
+
+
+" -----------------------------------------------------------------------------
+" Misc
+" -----------------------------------------------------------------------------
+autocmd BufRead,BufNewFile *.zt set filetype=ztest
+
+nmap <F4> :TagbarToggle<CR>
+nmap <F5> :NERDTreeToggle<CR>
+nmap <leader>tt :TagbarToggle<CR>
+nmap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>a :Ack<Space>
+nnoremap <silent> <leader><Space> :CtrlP<CR>

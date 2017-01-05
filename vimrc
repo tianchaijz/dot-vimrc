@@ -23,9 +23,6 @@ let $BUNDLES = $VIMHOME . "/bundles.vim"
 let mapleader = ","
 let g:mapleader = ","
 
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
-
 if filereadable($BUNDLES)
     source $BUNDLES
 endif
@@ -83,8 +80,11 @@ set wildmode=longest,list,full     " tab complete files up to longest unambiguou
 set so=7                           " set 7 lines to the cursor - when moving vertically using j/k
 set cc=80                          " color the 80th column
 set foldmethod=syntax              " fold by syntax
-set clipboard=unnamed              " copy selection to OS X clipboard
 set whichwrap+=<,>,h,l
+
+if $TMUX == ''
+    set clipboard+=unnamed         " copy selection to OS X clipboard
+endif
 
 " Show trailing whitespace
 set list
