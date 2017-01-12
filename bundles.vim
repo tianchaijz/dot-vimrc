@@ -19,6 +19,7 @@ let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_max_diagnostics_to_display = 10000
 let g:ycm_min_num_identifier_candidate_chars = 0
 let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_open_loclist_on_ycm_diags = 1
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -26,7 +27,11 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_filetype_blacklist = {
     \ 'vim': 1,
     \ 'markdown': 1,
-\}
+\ }
+let g:ycm_semantic_triggers =  {
+    \ 'c' : ['->', '.','re![_a-zA-z0-9]{2,}'],
+    \ 'cpp' : ['->', '.', '::','re![_a-zA-Z0-9]{2,}'],
+\ }
 
 " YouCompleteMe Omni-Completion
 augroup omni_completion
