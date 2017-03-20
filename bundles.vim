@@ -177,7 +177,8 @@ let g:clang_format#style_options = {
     \ "AllowShortFunctionsOnASingleLine": "false",
     \ "AlwaysBreakTemplateDeclarations": "true",
     \ "AlignEscapedNewlinesLeft": "true",
-    \ "ColumnLimit": 200,
+    \ "ColumnLimit": 80,
+    \ "SortIncludes": "false",
 \ }
 
 autocmd FileType c,cpp,objc nnoremap <buffer><leader>cf :<C-u>ClangFormat<CR>

@@ -215,10 +215,8 @@ endfunc
 func! QuickRun()
     exec "w"
     let l:ft = &filetype
-    if ft == 'c'
-        exec "!gcc -g -O0 -Wall -Werror -Wno-unused -Wpointer-arith % -o %<.out && time ./%<.out"
-    elseif ft == 'cpp' || ft == 'cc'
-        exec "!g++ -g -O0 -Wall -Werror -Wno-unused -Wpointer-arith --std=c++11 % -o %<.out && time ./%<.out"
+    if ft == 'c' || ft == 'cpp' || ft == 'cc'
+        exec "!run-cc.py % && time ./%<.out"
     elseif ft == 'python'
         exec "!time python2.7 %"
     elseif ft == 'lua'
