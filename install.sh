@@ -63,9 +63,13 @@ for i in $vimdir $HOME/.vimrc $HOME/.gvimrc; do
     fi
 done
 
+if [ ! -d $endpath/.vim ]; then
+    mkdir $endpath/.vim
+fi
+
 msg "Creating symlinks"
-symlink $endpath/vimrc $HOME/.vimrc
 symlink $endpath/.vim $vimdir
+symlink $endpath/vimrc $HOME/.vimrc
 symlink $endpath/$bundles $vimdir/$bundles
 symlink $endpath/$plug $vimdir/$plug
 symlink $endpath/$ycm_conf $vimdir/$ycm_conf
