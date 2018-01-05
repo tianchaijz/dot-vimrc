@@ -93,8 +93,11 @@ let g:SuperTabRetainCompletionType = 2
 " :execute "helptags " . g:opamshare . "/merlin/vim/doc"
 " <C-x><C-o> for completion
 " https://github.com/the-lambda-church/merlin/wiki/vim-from-scratch
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+try
+    let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+    execute "set rtp+=" . g:opamshare . "/merlin/vim"
+catch
+endtry
 
 autocmd FileType ocaml nmap <leader>i :MerlinTypeOf<CR>
 
