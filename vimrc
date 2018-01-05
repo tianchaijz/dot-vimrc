@@ -314,6 +314,9 @@ autocmd CursorHold,CursorHoldI * silent! checktime
 " Clear column highlight theme
 highlight clear SignColumn
 
+" Spell highlight
+highlight SpellBad cterm=underline ctermfg=red
+
 " Delete trailing whitespace
 augroup whitespace
     autocmd!
