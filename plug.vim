@@ -92,7 +92,6 @@ Plug 'christoomey/vim-tmux-navigator'
 " Color schemes
 " -----------------------------------------------------------------------------
 Plug 'jdevera/vim-cs-explorer'
-Plug 'ColorSchemeMenuMaker'
 Plug 'rickharris/vim-blackboard'
 Plug 'altercation/vim-colors-solarized'
 Plug 'rickharris/vim-monokai'
