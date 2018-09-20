@@ -81,6 +81,8 @@ set so=7                           " set 7 lines to the cursor - when moving ver
 set cc=80                          " color the 80th column
 set foldmethod=syntax              " fold by syntax
 set whichwrap+=<,>,h,l
+let skip_defaults_vim=1
+set viminfo=""
 
 if $TMUX == ''
     set clipboard+=unnamed         " copy selection to OS X clipboard
@@ -123,9 +125,11 @@ set formatoptions+=mM
 set lbr
 set textwidth=500
 
+
 augroup lang_config
     autocmd!
     autocmd FileType ruby,ocaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=80
+    autocmd FileType typescript,typescriptreact setlocal tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
     autocmd FileType coffee,javascript,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=80
     autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=80

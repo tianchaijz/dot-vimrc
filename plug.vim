@@ -7,7 +7,9 @@ call plug#begin('~/.vim/plugged')
 " -----------------------------------------------------------------------------
 " Code completions
 " -----------------------------------------------------------------------------
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer' }
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'Raimondi/delimitMate'
 Plug 'ervandew/supertab'
 
@@ -15,14 +17,15 @@ Plug 'ervandew/supertab'
 " -----------------------------------------------------------------------------
 " Snippets
 " -----------------------------------------------------------------------------
-Plug 'SirVer/ultisnips'
-Plug 'tianchaijz/vim-snippets'
+Plug 'SirVer/ultisnips', { 'commit': '9f240ec51b58a7c0d572c7499cea5b80839bb04b' }
+Plug 'honza/vim-snippets'
 
 
 " -----------------------------------------------------------------------------
 " Fast navigation
 " -----------------------------------------------------------------------------
 Plug 'Lokaltog/vim-easymotion'
+" Plug 'andymass/vim-matchup'
 
 
 " -----------------------------------------------------------------------------
@@ -46,7 +49,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'rking/ag.vim'
-Plug 'kien/ctrlp.vim'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'bling/vim-airline'
 Plug 'scrooloose/syntastic'
 Plug 'bronson/vim-trailing-whitespace'
@@ -70,13 +73,28 @@ Plug 'vim-scripts/VimClojure'
 Plug 'rosstimson/scala-vim-support'
 Plug 'pbrisbin/html-template-syntax'
 Plug 'mzlogin/vim-markdown-toc' | Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+" Plug 'rust-lang/rust.vim'
+
+Plug 'w0rp/ale'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+
+Plug 'HerringtonDarkholme/yats.vim'
+
+let g:ale_linters = {
+\  'javascript': ['eslint'],
+\  'typescript': ['tslint'],
+\}
+
+let g:ale_linter_aliases = {'typescriptreact': 'typescript'}
 
 
 " -----------------------------------------------------------------------------
 " Git
 " -----------------------------------------------------------------------------
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 
 
 " -----------------------------------------------------------------------------
@@ -99,6 +117,7 @@ Plug 'tpope/vim-vividchalk'
 Plug 'Lokaltog/vim-distinguished'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'fisadev/fisa-vim-colorscheme'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 
 " -----------------------------------------------------------------------------

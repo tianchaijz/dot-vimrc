@@ -8,30 +8,50 @@ source $PLUG
 " -----------------------------------------------------------------------------
 " YouCompleteMe
 " -----------------------------------------------------------------------------
-set completeopt-=preview
-let g:ycm_global_ycm_extra_conf = $VIMHOME . '/.ycm_extra_conf.py'
-let g:ycm_extra_conf_globlist = []
-let g:ycm_always_populate_location_list = 0
-let g:ycm_auto_trigger = 1
-let g:ycm_register_as_syntastic_checker = 1
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_enable_diagnostic_signs = 1
-let g:ycm_max_diagnostics_to_display = 10000
-let g:ycm_min_num_identifier_candidate_chars = 0
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_open_loclist_on_ycm_diags = 1
-let g:ycm_show_diagnostics_ui = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_filetype_blacklist = {
-    \ 'vim': 1,
-    \ 'markdown': 1,
-\ }
+" https://zhuanlan.zhihu.com/p/33046090
+set completeopt=menu,menuone
+
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+
+noremap <c-z> <NOP>
+
 let g:ycm_semantic_triggers =  {
-    \ 'c' : ['->', '.','re![_a-zA-z0-9]{2,}'],
-    \ 'cpp' : ['->', '.', '::','re![_a-zA-Z0-9]{2,}'],
+    \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+    \ 'cs,lua,javascript': ['re!\w{2}'],
 \ }
+
+let g:ycm_global_ycm_extra_conf = $VIMHOME . '/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+
+" let g:ycm_extra_conf_globlist = []
+" let g:ycm_always_populate_location_list = 0
+" let g:ycm_auto_trigger = 1
+" let g:ycm_register_as_syntastic_checker = 1
+" let g:ycm_enable_diagnostic_highlighting = 0
+" let g:ycm_enable_diagnostic_signs = 1
+" let g:ycm_show_diagnostics_ui = 1
+" let g:ycm_max_diagnostics_to_display = 10000
+" let g:ycm_min_num_identifier_candidate_chars = 0
+" let g:ycm_min_num_of_chars_for_completion = 2
+" let g:ycm_seed_identifiers_with_syntax = 1
+" let g:ycm_open_loclist_on_ycm_diags = 1
+" let g:ycm_show_diagnostics_ui = 1
+" let g:ycm_collect_identifiers_from_tags_files = 1
+" let g:ycm_confirm_extra_conf = 0
+" let g:ycm_filetype_blacklist = {
+"     \ 'vim': 1,
+"     \ 'markdown': 1,
+" \ }
+" let g:ycm_semantic_triggers =  {
+"     \ 'c' : ['->', '.','re![_a-zA-z0-9]{2,}'],
+"     \ 'cpp' : ['->', '.', '::','re![_a-zA-Z0-9]{2,}'],
+" \ }
 
 " YouCompleteMe Omni-Completion
 augroup omni_completion
@@ -56,6 +76,21 @@ nnoremap <silent> <leader>yt :YcmCompleter GetType<CR>
 
 
 " -----------------------------------------------------------------------------
+" vim-go
+" -----------------------------------------------------------------------------
+" https://github.com/fatih/vim-go-tutorial/blob/master/vimrc
+let g:go_fmt_command = "goimports"
+let g:go_list_type = "quickfix"
+
+let g:go_highlight_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_generate_tags = 1
+
+" let g:go_debug=['lsp']
+
+
+" -----------------------------------------------------------------------------
 " syntastic
 " -----------------------------------------------------------------------------
 " https://github.com/scrooloose/syntastic/wiki/C%3A---gcc
@@ -77,6 +112,12 @@ let g:UltiSnipsEditSplit = 'vertical'
 " EasyMotion
 " -----------------------------------------------------------------------------
 let g:EasyMotion_leader_key = '<leader>'
+
+
+" -----------------------------------------------------------------------------
+" match-up
+" -----------------------------------------------------------------------------
+" let g:loaded_matchit = 1
 
 
 " -----------------------------------------------------------------------------
@@ -147,7 +188,7 @@ set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class
 set wildignore+=.DS_Store,*/.git/*,*/.hg/*,*/.svn/*
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/](node_modules|target|dist|deps)|(\.(swp|ico|git|svn))$',
+    \ 'dir': '\v[\/]((node_modules|target|external|gperftools|dist|deps)|\.(swp|ico|git|svn))$',
     \ 'file': '\v\.(exe|so|dll)$',
 \ }
 
@@ -281,12 +322,46 @@ nmap <leader>gg :copen<CR>:GGrep
 nmap <leader>gl :Extradite!<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <leader>gb :Gblame<CR>
+nnoremap <space>ga :Git add %:p<CR><CR>
+nnoremap <space>gb :Gblame<CR>
+nnoremap <space>gc :Gcommit -v -q<CR>
+nnoremap <space>gd :Gvdiff<CR>
+nnoremap <space>ge :Gedit<CR>
+nnoremap <space>gs :Gstatus<CR>
 
 
 " -----------------------------------------------------------------------------
 " vim-gitgutter
 " -----------------------------------------------------------------------------
 let g:gitgutter_highlight_lines = 0
+
+
+" -----------------------------------------------------------------------------
+" vim-gutentags
+" -----------------------------------------------------------------------------
+let g:gutentags_project_root = ['.git', '.hg', '.svn', '.root', '.project']
+let g:gutentags_ctags_tagfile = '.tags'
+
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+
+let g:gutentags_generate_on_write = 0
+let g:gutentags_generate_on_missing = 0
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+" check if ~/.cache/tags exists
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+
+
+" -----------------------------------------------------------------------------
+" rust
+" -----------------------------------------------------------------------------
+let g:rustfmt_autosave = 1
+let g:rust_cargo_avoid_whole_workspace = 0
 
 
 " -----------------------------------------------------------------------------
@@ -351,3 +426,15 @@ nmap <leader>tt :TagbarToggle<CR>
 nmap <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>a :Ack<Space>
 nnoremap <silent> <leader><Space> :CtrlP<CR>
+
+
+highlight Lf_hl_match gui=bold guifg=Blue cterm=bold ctermfg=21
+highlight Lf_hl_matchRefine  gui=bold guifg=Magenta cterm=bold ctermfg=201
+
+let g:Lf_CommandMap = {'<Tab>': ['<ESC>']}
+let g:Lf_ShortcutF = '<C-P>'
+let g:Lf_RootMarkers = ['.git', '.project', '.root', '.svn']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+
+
+autocmd FileType rust nmap <leader>cf :!rustfmt %<CR><CR>
