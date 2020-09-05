@@ -86,6 +86,7 @@ let g:go_highlight_types = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_generate_tags = 1
+let g:go_gocode_autobuild = 0
 
 " let g:go_debug=['lsp']
 
@@ -428,13 +429,18 @@ nnoremap <leader>a :Ack<Space>
 nnoremap <silent> <leader><Space> :CtrlP<CR>
 
 
-highlight Lf_hl_match gui=bold guifg=Blue cterm=bold ctermfg=21
-highlight Lf_hl_matchRefine  gui=bold guifg=Magenta cterm=bold ctermfg=201
-
+let g:Lf_ShowDevIcons = 0
 let g:Lf_CommandMap = {'<Tab>': ['<ESC>']}
 let g:Lf_ShortcutF = '<C-P>'
 let g:Lf_RootMarkers = ['.git', '.project', '.root', '.svn']
 let g:Lf_WorkingDirectoryMode = 'Ac'
+noremap <leader>lb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>lm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>lt :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>ll :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+
+highlight Lf_hl_match gui=bold guifg=Blue cterm=bold ctermfg=21
+highlight Lf_hl_matchRefine gui=bold guifg=Magenta cterm=bold ctermfg=201
 
 
 autocmd FileType rust nmap <leader>cf :!rustfmt %<CR><CR>

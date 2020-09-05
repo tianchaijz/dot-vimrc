@@ -46,7 +46,7 @@ Plug 'tpope/vim-surround'
 " -----------------------------------------------------------------------------
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 Plug 'scrooloose/nerdcommenter'
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'rking/ag.vim'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
@@ -62,7 +62,6 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'vim-scripts/Mark'
 
 Plug 'lepture/vim-jinja'
-Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-haml'
 Plug 'jcf/vim-latex', { 'for': 'latex' }
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -83,11 +82,28 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'HerringtonDarkholme/yats.vim'
 
 let g:ale_linters = {
-\  'javascript': ['eslint'],
-\  'typescript': ['tslint'],
+\   'javascript': ['eslint'],
+\   'typescript': ['tsserver', 'tslint'],
 \}
 
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\   'typescript': ['prettier'],
+\   'vue': ['eslint'],
+\   'scss': ['prettier'],
+\   'html': ['prettier']
+\}
+
+let g:ale_fix_on_save = 1
 let g:ale_linter_aliases = {'typescriptreact': 'typescript'}
+
+
+Plug 'prettier/vim-prettier', {
+\ 'do': 'yarn install',
+\ 'branch': 'release/0.x'
+\ }
+
+autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 
 
 " -----------------------------------------------------------------------------
@@ -126,6 +142,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'xolox/vim-misc'
 Plug 'vim-scripts/DrawIt'
 Plug 'vim-scripts/AutoFenc.vim' " detect file encoding
+Plug 'ConradIrwin/vim-bracketed-paste'
 
 
 call plug#end()
