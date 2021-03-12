@@ -11,7 +11,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-comp
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'Raimondi/delimitMate'
-Plug 'ervandew/supertab'
 
 
 " -----------------------------------------------------------------------------
@@ -56,23 +55,15 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'fholgado/minibufexpl.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'jeetsukumaran/vim-markology'
-Plug 'rhysd/vim-clang-format'
 Plug 'let-def/ocp-indent-vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'vim-scripts/Mark'
 
-Plug 'lepture/vim-jinja'
-Plug 'tpope/vim-haml'
 Plug 'jcf/vim-latex', { 'for': 'latex' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'tell-k/vim-autopep8', { 'for': 'python' }
-Plug 'vim-scripts/haskell.vim'
-Plug 'wlangstroth/vim-racket'
-Plug 'vim-scripts/VimClojure'
-Plug 'rosstimson/scala-vim-support'
-Plug 'pbrisbin/html-template-syntax'
 Plug 'mzlogin/vim-markdown-toc' | Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-" Plug 'rust-lang/rust.vim'
+" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
@@ -139,10 +130,8 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 " -----------------------------------------------------------------------------
 " Others
 " -----------------------------------------------------------------------------
-Plug 'xolox/vim-misc'
 Plug 'vim-scripts/DrawIt'
 Plug 'vim-scripts/AutoFenc.vim' " detect file encoding
-Plug 'ConradIrwin/vim-bracketed-paste'
 
 
 call plug#end()

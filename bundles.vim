@@ -26,6 +26,16 @@ let g:ycm_semantic_triggers =  {
     \ 'cs,lua,javascript': ['re!\w{2}'],
 \ }
 
+let g:ycm_language_server =
+\ [
+\   {
+\     'name': 'rust',
+\     'cmdline': ['rust-analyzer'],
+\     'filetypes': ['rust'],
+\     'project_root_files': ['Cargo.toml']
+\   }
+\ ]
+
 let g:ycm_global_ycm_extra_conf = $VIMHOME . '/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 
@@ -87,6 +97,7 @@ let g:go_highlight_functions = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_generate_tags = 1
 let g:go_gocode_autobuild = 0
+let g:go_gocode_propose_source = 0
 
 " let g:go_debug=['lsp']
 
@@ -363,6 +374,11 @@ endif
 " -----------------------------------------------------------------------------
 let g:rustfmt_autosave = 1
 let g:rust_cargo_avoid_whole_workspace = 0
+let g:cargo_shell_command_runner = 'tab :terminal'
+" Run with :!
+let g:rust_shell_command_runner = '!'
+" Run with :terminal
+let g:rust_shell_command_runner = 'terminal'
 
 
 " -----------------------------------------------------------------------------

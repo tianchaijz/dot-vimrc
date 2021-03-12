@@ -63,7 +63,6 @@ set t_Co=256                       " explicitly tell vim that the terminal has 2
 set mouse=a                        " use mouse in all modes
 set report=0                       " always report number of lines changed
 set nowrap                         " don't wrap lines
-set scrolloff=5                    " 5 lines above/below cursor when scrolling
 set number                         " show line numbers
 set showmatch                      " show matching bracket (briefly jump)
 set showcmd                        " show typed command in status bar
