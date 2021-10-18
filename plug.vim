@@ -72,6 +72,9 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'chiedojohn/vim-case-convert'
+Plug 'tpope/vim-abolish'
+
 
 let g:ale_linters = {
 \   'javascript': ['eslint'],
