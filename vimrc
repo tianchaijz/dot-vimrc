@@ -58,7 +58,6 @@ set history=1000
 set tm=2000                        " leader key timeout
 set nofoldenable                   " disable folding
 set confirm                        " prompt when existing from an unsaved file
-set backspace=indent,eol,start     " more powerful backspacing
 set t_Co=256                       " explicitly tell vim that the terminal has 256 colors
 set mouse=a                        " use mouse in all modes
 set report=0                       " always report number of lines changed
@@ -81,7 +80,6 @@ set cc=80                          " color the 80th column
 set foldmethod=syntax              " fold by syntax
 set whichwrap+=<,>,h,l
 let skip_defaults_vim=1
-set viminfo=""
 
 if $TMUX == ''
     set clipboard+=unnamed         " copy selection to OS X clipboard
